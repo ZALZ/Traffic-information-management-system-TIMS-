@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.danchey.traffic.mapper.OverpassMapper" >
+  <resultMap id="BaseResultMap" type="com.danchey.traffic.pojo.Overpass" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="investigator" property="investigator" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="hasAdd" property="hasadd" jdbcType="BIT" />
+    <result column="radius" property="radius" jdbcType="DECIMAL" />
+    <result column="longitudinalGrade" property="longitudinalgrade" jdbcType="DECIMAL" />
+    <result column="disturbance" property="disturbance" jdbcType="VARCHAR" />
+    <result column="hasStation" property="hasstation" jdbcType="BIT" />
+    <result column="rampType_id" property="ramptypeId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, create_time, update_time, creater, investigator, name, hasAdd, radius, longitudinalGrade, 
+    disturbance, hasStation, rampType_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.danchey.traffic.pojo.OverpassExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from overpass
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from overpass
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from overpass
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.danchey.traffic.pojo.OverpassExample" >
+    delete from overpass
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.danchey.traffic.pojo.Overpass" >
+    insert into overpass (id, create_time, update_time, 
+      creater, investigator, name, 
+      hasAdd, radius, longitudinalGrade, 
+      disturbance, hasStation, rampType_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{investigator,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{hasadd,jdbcType=BIT}, #{radius,jdbcType=DECIMAL}, #{longitudinalgrade,jdbcType=DECIMAL}, 
+      #{disturbance,jdbcType=VARCHAR}, #{hasstation,jdbcType=BIT}, #{ramptypeId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.danchey.traffic.pojo.Overpass" >
+    insert into overpass
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="investigator != null" >
+        investigator,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="hasadd != null" >
+        hasAdd,
+      </if>
+      <if test="radius != null" >
+        radius,
+      </if>
+      <if test="longitudinalgrade != null" >
+        longitudinalGrade,
+      </if>
+      <if test="disturbance != null" >
+        disturbance,
+      </if>
+      <if test="hasstation != null" >
+        hasStation,
+      </if>
+      <if test="ramptypeId != null" >
+        rampType_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="investigator != null" >
+        #{investigator,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="hasadd != null" >
+        #{hasadd,jdbcType=BIT},
+      </if>
+      <if test="radius != null" >
+        #{radius,jdbcType=DECIMAL},
+      </if>
+      <if test="longitudinalgrade != null" >
+        #{longitudinalgrade,jdbcType=DECIMAL},
+      </if>
+      <if test="disturbance != null" >
+        #{disturbance,jdbcType=VARCHAR},
+      </if>
+      <if test="hasstation != null" >
+        #{hasstation,jdbcType=BIT},
+      </if>
+      <if test="ramptypeId != null" >
+        #{ramptypeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.danchey.traffic.pojo.OverpassExample" resultType="java.lang.Integer" >
+    select count(*) from overpass
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update overpass
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creater != null" >
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investigator != null" >
+        investigator = #{record.investigator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasadd != null" >
+        hasAdd = #{record.hasadd,jdbcType=BIT},
+      </if>
+      <if test="record.radius != null" >
+        radius = #{record.radius,jdbcType=DECIMAL},
+      </if>
+      <if test="record.longitudinalgrade != null" >
+        longitudinalGrade = #{record.longitudinalgrade,jdbcType=DECIMAL},
+      </if>
+      <if test="record.disturbance != null" >
+        disturbance = #{record.disturbance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasstation != null" >
+        hasStation = #{record.hasstation,jdbcType=BIT},
+      </if>
+      <if test="record.ramptypeId != null" >
+        rampType_id = #{record.ramptypeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update overpass
+    set id = #{record.id,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      investigator = #{record.investigator,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      hasAdd = #{record.hasadd,jdbcType=BIT},
+      radius = #{record.radius,jdbcType=DECIMAL},
+      longitudinalGrade = #{record.longitudinalgrade,jdbcType=DECIMAL},
+      disturbance = #{record.disturbance,jdbcType=VARCHAR},
+      hasStation = #{record.hasstation,jdbcType=BIT},
+      rampType_id = #{record.ramptypeId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.danchey.traffic.pojo.Overpass" >
+    update overpass
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="investigator != null" >
+        investigator = #{investigator,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="hasadd != null" >
+        hasAdd = #{hasadd,jdbcType=BIT},
+      </if>
+      <if test="radius != null" >
+        radius = #{radius,jdbcType=DECIMAL},
+      </if>
+      <if test="longitudinalgrade != null" >
+        longitudinalGrade = #{longitudinalgrade,jdbcType=DECIMAL},
+      </if>
+      <if test="disturbance != null" >
+        disturbance = #{disturbance,jdbcType=VARCHAR},
+      </if>
+      <if test="hasstation != null" >
+        hasStation = #{hasstation,jdbcType=BIT},
+      </if>
+      <if test="ramptypeId != null" >
+        rampType_id = #{ramptypeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.danchey.traffic.pojo.Overpass" >
+    update overpass
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      creater = #{creater,jdbcType=VARCHAR},
+      investigator = #{investigator,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      hasAdd = #{hasadd,jdbcType=BIT},
+      radius = #{radius,jdbcType=DECIMAL},
+      longitudinalGrade = #{longitudinalgrade,jdbcType=DECIMAL},
+      disturbance = #{disturbance,jdbcType=VARCHAR},
+      hasStation = #{hasstation,jdbcType=BIT},
+      rampType_id = #{ramptypeId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

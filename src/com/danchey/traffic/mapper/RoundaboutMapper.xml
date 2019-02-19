@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.danchey.traffic.mapper.RoundaboutMapper" >
+  <resultMap id="BaseResultMap" type="com.danchey.traffic.pojo.Roundabout" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="investigator" property="investigator" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="radius" property="radius" jdbcType="DECIMAL" />
+    <result column="turningDivided" property="turningdivided" jdbcType="VARCHAR" />
+    <result column="turningWidth" property="turningwidth" jdbcType="DECIMAL" />
+    <result column="isSeparate" property="isseparate" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, create_time, update_time, creater, investigator, name, radius, turningDivided, 
+    turningWidth, isSeparate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.danchey.traffic.pojo.RoundaboutExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from roundabout
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from roundabout
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from roundabout
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.danchey.traffic.pojo.RoundaboutExample" >
+    delete from roundabout
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.danchey.traffic.pojo.Roundabout" >
+    insert into roundabout (id, create_time, update_time, 
+      creater, investigator, name, 
+      radius, turningDivided, turningWidth, 
+      isSeparate)
+    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{investigator,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{radius,jdbcType=DECIMAL}, #{turningdivided,jdbcType=VARCHAR}, #{turningwidth,jdbcType=DECIMAL}, 
+      #{isseparate,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.danchey.traffic.pojo.Roundabout" >
+    insert into roundabout
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="investigator != null" >
+        investigator,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="radius != null" >
+        radius,
+      </if>
+      <if test="turningdivided != null" >
+        turningDivided,
+      </if>
+      <if test="turningwidth != null" >
+        turningWidth,
+      </if>
+      <if test="isseparate != null" >
+        isSeparate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="investigator != null" >
+        #{investigator,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="radius != null" >
+        #{radius,jdbcType=DECIMAL},
+      </if>
+      <if test="turningdivided != null" >
+        #{turningdivided,jdbcType=VARCHAR},
+      </if>
+      <if test="turningwidth != null" >
+        #{turningwidth,jdbcType=DECIMAL},
+      </if>
+      <if test="isseparate != null" >
+        #{isseparate,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.danchey.traffic.pojo.RoundaboutExample" resultType="java.lang.Integer" >
+    select count(*) from roundabout
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update roundabout
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creater != null" >
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investigator != null" >
+        investigator = #{record.investigator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.radius != null" >
+        radius = #{record.radius,jdbcType=DECIMAL},
+      </if>
+      <if test="record.turningdivided != null" >
+        turningDivided = #{record.turningdivided,jdbcType=VARCHAR},
+      </if>
+      <if test="record.turningwidth != null" >
+        turningWidth = #{record.turningwidth,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isseparate != null" >
+        isSeparate = #{record.isseparate,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update roundabout
+    set id = #{record.id,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      investigator = #{record.investigator,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      radius = #{record.radius,jdbcType=DECIMAL},
+      turningDivided = #{record.turningdivided,jdbcType=VARCHAR},
+      turningWidth = #{record.turningwidth,jdbcType=DECIMAL},
+      isSeparate = #{record.isseparate,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.danchey.traffic.pojo.Roundabout" >
+    update roundabout
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="investigator != null" >
+        investigator = #{investigator,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="radius != null" >
+        radius = #{radius,jdbcType=DECIMAL},
+      </if>
+      <if test="turningdivided != null" >
+        turningDivided = #{turningdivided,jdbcType=VARCHAR},
+      </if>
+      <if test="turningwidth != null" >
+        turningWidth = #{turningwidth,jdbcType=DECIMAL},
+      </if>
+      <if test="isseparate != null" >
+        isSeparate = #{isseparate,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.danchey.traffic.pojo.Roundabout" >
+    update roundabout
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      creater = #{creater,jdbcType=VARCHAR},
+      investigator = #{investigator,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      radius = #{radius,jdbcType=DECIMAL},
+      turningDivided = #{turningdivided,jdbcType=VARCHAR},
+      turningWidth = #{turningwidth,jdbcType=DECIMAL},
+      isSeparate = #{isseparate,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
