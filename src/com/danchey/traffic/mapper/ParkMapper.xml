@@ -3,16 +3,18 @@
 <mapper namespace="com.danchey.traffic.mapper.ParkMapper" >
   <resultMap id="BaseResultMap" type="com.danchey.traffic.pojo.Park" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="surveyTime" property="surveytime" jdbcType="DATE" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
     <result column="creater" property="creater" jdbcType="VARCHAR" />
     <result column="investigator" property="investigator" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="area" property="area" jdbcType="VARCHAR" />
     <result column="catability" property="catability" jdbcType="INTEGER" />
     <result column="classification" property="classification" jdbcType="VARCHAR" />
     <result column="businessStatus" property="businessstatus" jdbcType="VARCHAR" />
-    <result column="isSign" property="issign" jdbcType="BIT" />
     <result column="parktype_id" property="parktypeId" jdbcType="INTEGER" />
+    <result column="coordinate" property="coordinate" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, create_time, update_time, creater, investigator, area, catability, classification, 
-    businessStatus, isSign, parktype_id
+    id, surveyTime, createTime, updateTime, creater, investigator, name, area, catability, 
+    classification, businessStatus, parktype_id, coordinate
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.danchey.traffic.pojo.ParkExample" >
     select
@@ -107,14 +109,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.danchey.traffic.pojo.Park" >
-    insert into park (id, create_time, update_time, 
-      creater, investigator, area, 
-      catability, classification, businessStatus, 
-      isSign, parktype_id)
-    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{creater,jdbcType=VARCHAR}, #{investigator,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
-      #{catability,jdbcType=INTEGER}, #{classification,jdbcType=VARCHAR}, #{businessstatus,jdbcType=VARCHAR}, 
-      #{issign,jdbcType=BIT}, #{parktypeId,jdbcType=INTEGER})
+    insert into park (id, surveyTime, createTime, 
+      updateTime, creater, investigator, 
+      name, area, catability, 
+      classification, businessStatus, parktype_id, 
+      coordinate)
+    values (#{id,jdbcType=INTEGER}, #{surveytime,jdbcType=DATE}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{investigator,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{catability,jdbcType=INTEGER}, 
+      #{classification,jdbcType=VARCHAR}, #{businessstatus,jdbcType=VARCHAR}, #{parktypeId,jdbcType=INTEGER}, 
+      #{coordinate,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.danchey.traffic.pojo.Park" >
     insert into park
@@ -122,17 +126,23 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="createTime != null" >
-        create_time,
+      <if test="surveytime != null" >
+        surveyTime,
       </if>
-      <if test="updateTime != null" >
-        update_time,
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
       </if>
       <if test="creater != null" >
         creater,
       </if>
       <if test="investigator != null" >
         investigator,
+      </if>
+      <if test="name != null" >
+        name,
       </if>
       <if test="area != null" >
         area,
@@ -146,28 +156,34 @@
       <if test="businessstatus != null" >
         businessStatus,
       </if>
-      <if test="issign != null" >
-        isSign,
-      </if>
       <if test="parktypeId != null" >
         parktype_id,
+      </if>
+      <if test="coordinate != null" >
+        coordinate,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="surveytime != null" >
+        #{surveytime,jdbcType=DATE},
       </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="creater != null" >
         #{creater,jdbcType=VARCHAR},
       </if>
       <if test="investigator != null" >
         #{investigator,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="area != null" >
         #{area,jdbcType=VARCHAR},
@@ -181,11 +197,11 @@
       <if test="businessstatus != null" >
         #{businessstatus,jdbcType=VARCHAR},
       </if>
-      <if test="issign != null" >
-        #{issign,jdbcType=BIT},
-      </if>
       <if test="parktypeId != null" >
         #{parktypeId,jdbcType=INTEGER},
+      </if>
+      <if test="coordinate != null" >
+        #{coordinate,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -201,17 +217,23 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.surveytime != null" >
+        surveyTime = #{record.surveytime,jdbcType=DATE},
       </if>
-      <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.creater != null" >
         creater = #{record.creater,jdbcType=VARCHAR},
       </if>
       <if test="record.investigator != null" >
         investigator = #{record.investigator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.area != null" >
         area = #{record.area,jdbcType=VARCHAR},
@@ -225,11 +247,11 @@
       <if test="record.businessstatus != null" >
         businessStatus = #{record.businessstatus,jdbcType=VARCHAR},
       </if>
-      <if test="record.issign != null" >
-        isSign = #{record.issign,jdbcType=BIT},
-      </if>
       <if test="record.parktypeId != null" >
         parktype_id = #{record.parktypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.coordinate != null" >
+        coordinate = #{record.coordinate,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -239,16 +261,18 @@
   <update id="updateByExample" parameterType="map" >
     update park
     set id = #{record.id,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      surveyTime = #{record.surveytime,jdbcType=DATE},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
       creater = #{record.creater,jdbcType=VARCHAR},
       investigator = #{record.investigator,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
       area = #{record.area,jdbcType=VARCHAR},
       catability = #{record.catability,jdbcType=INTEGER},
       classification = #{record.classification,jdbcType=VARCHAR},
       businessStatus = #{record.businessstatus,jdbcType=VARCHAR},
-      isSign = #{record.issign,jdbcType=BIT},
-      parktype_id = #{record.parktypeId,jdbcType=INTEGER}
+      parktype_id = #{record.parktypeId,jdbcType=INTEGER},
+      coordinate = #{record.coordinate,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -256,17 +280,23 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.danchey.traffic.pojo.Park" >
     update park
     <set >
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="surveytime != null" >
+        surveyTime = #{surveytime,jdbcType=DATE},
       </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="creater != null" >
         creater = #{creater,jdbcType=VARCHAR},
       </if>
       <if test="investigator != null" >
         investigator = #{investigator,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="area != null" >
         area = #{area,jdbcType=VARCHAR},
@@ -280,27 +310,29 @@
       <if test="businessstatus != null" >
         businessStatus = #{businessstatus,jdbcType=VARCHAR},
       </if>
-      <if test="issign != null" >
-        isSign = #{issign,jdbcType=BIT},
-      </if>
       <if test="parktypeId != null" >
         parktype_id = #{parktypeId,jdbcType=INTEGER},
+      </if>
+      <if test="coordinate != null" >
+        coordinate = #{coordinate,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.danchey.traffic.pojo.Park" >
     update park
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
+    set surveyTime = #{surveytime,jdbcType=DATE},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
       creater = #{creater,jdbcType=VARCHAR},
       investigator = #{investigator,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
       area = #{area,jdbcType=VARCHAR},
       catability = #{catability,jdbcType=INTEGER},
       classification = #{classification,jdbcType=VARCHAR},
       businessStatus = #{businessstatus,jdbcType=VARCHAR},
-      isSign = #{issign,jdbcType=BIT},
-      parktype_id = #{parktypeId,jdbcType=INTEGER}
+      parktype_id = #{parktypeId,jdbcType=INTEGER},
+      coordinate = #{coordinate,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

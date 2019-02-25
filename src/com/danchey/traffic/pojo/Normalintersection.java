@@ -5,9 +5,11 @@ import java.util.Date;
 public class Normalintersection {
     private Integer id;
 
-    private Date createTime;
+    private Date surveytime;
 
-    private Date updateTime;
+    private Date createtime;
+
+    private Date updatetime;
 
     private String creater;
 
@@ -15,13 +17,15 @@ public class Normalintersection {
 
     private String name;
 
-    private Integer intoNumber;
+    private Integer intonumber;
 
-    private Integer intoWidth;
+    private Integer intowidth;
 
-    private Integer areaId;
+    private Integer areatypeId;
 
-    private Integer controlId;
+    private Integer controltypeId;
+
+    private String coordinate;
 
     public Integer getId() {
         return id;
@@ -31,20 +35,28 @@ public class Normalintersection {
         this.id = id;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getSurveytime() {
+        return surveytime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setSurveytime(Date surveytime) {
+        this.surveytime = surveytime;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public Date getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
     }
 
     public String getCreater() {
@@ -71,35 +83,43 @@ public class Normalintersection {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getIntoNumber() {
-        return intoNumber;
+    public Integer getIntonumber() {
+        return intonumber;
     }
 
-    public void setIntoNumber(Integer intoNumber) {
-        this.intoNumber = intoNumber;
+    public void setIntonumber(Integer intonumber) {
+        this.intonumber = intonumber;
     }
 
-    public Integer getIntoWidth() {
-        return intoWidth;
+    public Integer getIntowidth() {
+        return intowidth;
     }
 
-    public void setIntoWidth(Integer intoWidth) {
-        this.intoWidth = intoWidth;
+    public void setIntowidth(Integer intowidth) {
+        this.intowidth = intowidth;
     }
 
-    public Integer getAreaId() {
-        return areaId;
+    public Integer getAreatypeId() {
+        return areatypeId;
     }
 
-    public void setAreaId(Integer areaId) {
-        this.areaId = areaId;
+    public void setAreatypeId(Integer areatypeId) {
+        this.areatypeId = areatypeId;
     }
 
-    public Integer getControlId() {
-        return controlId;
+    public Integer getControltypeId() {
+        return controltypeId;
     }
 
-    public void setControlId(Integer controlId) {
-        this.controlId = controlId;
+    public void setControltypeId(Integer controltypeId) {
+        this.controltypeId = controltypeId;
+    }
+
+    public String getCoordinate() {
+        return coordinate;
+    }
+
+    public void setCoordinate(String coordinate) {
+        this.coordinate = coordinate == null ? null : coordinate.trim();
     }
 }

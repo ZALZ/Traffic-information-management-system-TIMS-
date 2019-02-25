@@ -3,14 +3,14 @@ package com.danchey.traffic.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControltypeExample {
+public class AlltypeExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ControltypeExample() {
+    public AlltypeExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -164,73 +164,203 @@ public class ControltypeExample {
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeIsNull() {
-            addCriterion("control_type is null");
+        public Criteria andNameIsNull() {
+            addCriterion("name is null");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeIsNotNull() {
-            addCriterion("control_type is not null");
+        public Criteria andNameIsNotNull() {
+            addCriterion("name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeEqualTo(String value) {
-            addCriterion("control_type =", value, "controlType");
+        public Criteria andNameEqualTo(String value) {
+            addCriterion("name =", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeNotEqualTo(String value) {
-            addCriterion("control_type <>", value, "controlType");
+        public Criteria andNameNotEqualTo(String value) {
+            addCriterion("name <>", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeGreaterThan(String value) {
-            addCriterion("control_type >", value, "controlType");
+        public Criteria andNameGreaterThan(String value) {
+            addCriterion("name >", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("control_type >=", value, "controlType");
+        public Criteria andNameGreaterThanOrEqualTo(String value) {
+            addCriterion("name >=", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeLessThan(String value) {
-            addCriterion("control_type <", value, "controlType");
+        public Criteria andNameLessThan(String value) {
+            addCriterion("name <", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeLessThanOrEqualTo(String value) {
-            addCriterion("control_type <=", value, "controlType");
+        public Criteria andNameLessThanOrEqualTo(String value) {
+            addCriterion("name <=", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeLike(String value) {
-            addCriterion("control_type like", value, "controlType");
+        public Criteria andNameLike(String value) {
+            addCriterion("name like", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeNotLike(String value) {
-            addCriterion("control_type not like", value, "controlType");
+        public Criteria andNameNotLike(String value) {
+            addCriterion("name not like", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeIn(List<String> values) {
-            addCriterion("control_type in", values, "controlType");
+        public Criteria andNameIn(List<String> values) {
+            addCriterion("name in", values, "name");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeNotIn(List<String> values) {
-            addCriterion("control_type not in", values, "controlType");
+        public Criteria andNameNotIn(List<String> values) {
+            addCriterion("name not in", values, "name");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeBetween(String value1, String value2) {
-            addCriterion("control_type between", value1, value2, "controlType");
+        public Criteria andNameBetween(String value1, String value2) {
+            addCriterion("name between", value1, value2, "name");
             return (Criteria) this;
         }
 
-        public Criteria andControlTypeNotBetween(String value1, String value2) {
-            addCriterion("control_type not between", value1, value2, "controlType");
+        public Criteria andNameNotBetween(String value1, String value2) {
+            addCriterion("name not between", value1, value2, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameIsNull() {
+            addCriterion("typeName is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameIsNotNull() {
+            addCriterion("typeName is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameEqualTo(String value) {
+            addCriterion("typeName =", value, "typename");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameNotEqualTo(String value) {
+            addCriterion("typeName <>", value, "typename");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameGreaterThan(String value) {
+            addCriterion("typeName >", value, "typename");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameGreaterThanOrEqualTo(String value) {
+            addCriterion("typeName >=", value, "typename");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameLessThan(String value) {
+            addCriterion("typeName <", value, "typename");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameLessThanOrEqualTo(String value) {
+            addCriterion("typeName <=", value, "typename");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameLike(String value) {
+            addCriterion("typeName like", value, "typename");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameNotLike(String value) {
+            addCriterion("typeName not like", value, "typename");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameIn(List<String> values) {
+            addCriterion("typeName in", values, "typename");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameNotIn(List<String> values) {
+            addCriterion("typeName not in", values, "typename");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameBetween(String value1, String value2) {
+            addCriterion("typeName between", value1, value2, "typename");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypenameNotBetween(String value1, String value2) {
+            addCriterion("typeName not between", value1, value2, "typename");
+            return (Criteria) this;
+        }
+
+        public Criteria andTabletypeIdIsNull() {
+            addCriterion("tableType_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTabletypeIdIsNotNull() {
+            addCriterion("tableType_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTabletypeIdEqualTo(Integer value) {
+            addCriterion("tableType_id =", value, "tabletypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTabletypeIdNotEqualTo(Integer value) {
+            addCriterion("tableType_id <>", value, "tabletypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTabletypeIdGreaterThan(Integer value) {
+            addCriterion("tableType_id >", value, "tabletypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTabletypeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("tableType_id >=", value, "tabletypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTabletypeIdLessThan(Integer value) {
+            addCriterion("tableType_id <", value, "tabletypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTabletypeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("tableType_id <=", value, "tabletypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTabletypeIdIn(List<Integer> values) {
+            addCriterion("tableType_id in", values, "tabletypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTabletypeIdNotIn(List<Integer> values) {
+            addCriterion("tableType_id not in", values, "tabletypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTabletypeIdBetween(Integer value1, Integer value2) {
+            addCriterion("tableType_id between", value1, value2, "tabletypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTabletypeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("tableType_id not between", value1, value2, "tabletypeId");
             return (Criteria) this;
         }
     }

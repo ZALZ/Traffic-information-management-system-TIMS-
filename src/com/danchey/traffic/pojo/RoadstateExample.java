@@ -3,6 +3,7 @@ package com.danchey.traffic.pojo;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class RoadstateExample {
@@ -106,6 +107,32 @@ public class RoadstateExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
+        }
+
         public Criteria andIdIsNull() {
             addCriterion("id is null");
             return (Criteria) this;
@@ -166,123 +193,183 @@ public class RoadstateExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNull() {
-            addCriterion("create_time is null");
+        public Criteria andSurveytimeIsNull() {
+            addCriterion("surveyTime is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNotNull() {
-            addCriterion("create_time is not null");
+        public Criteria andSurveytimeIsNotNull() {
+            addCriterion("surveyTime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Date value) {
-            addCriterion("create_time =", value, "createTime");
+        public Criteria andSurveytimeEqualTo(Date value) {
+            addCriterionForJDBCDate("surveyTime =", value, "surveytime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Date value) {
-            addCriterion("create_time <>", value, "createTime");
+        public Criteria andSurveytimeNotEqualTo(Date value) {
+            addCriterionForJDBCDate("surveyTime <>", value, "surveytime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Date value) {
-            addCriterion("create_time >", value, "createTime");
+        public Criteria andSurveytimeGreaterThan(Date value) {
+            addCriterionForJDBCDate("surveyTime >", value, "surveytime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("create_time >=", value, "createTime");
+        public Criteria andSurveytimeGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("surveyTime >=", value, "surveytime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Date value) {
-            addCriterion("create_time <", value, "createTime");
+        public Criteria andSurveytimeLessThan(Date value) {
+            addCriterionForJDBCDate("surveyTime <", value, "surveytime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("create_time <=", value, "createTime");
+        public Criteria andSurveytimeLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("surveyTime <=", value, "surveytime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Date> values) {
-            addCriterion("create_time in", values, "createTime");
+        public Criteria andSurveytimeIn(List<Date> values) {
+            addCriterionForJDBCDate("surveyTime in", values, "surveytime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Date> values) {
-            addCriterion("create_time not in", values, "createTime");
+        public Criteria andSurveytimeNotIn(List<Date> values) {
+            addCriterionForJDBCDate("surveyTime not in", values, "surveytime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
-            addCriterion("create_time between", value1, value2, "createTime");
+        public Criteria andSurveytimeBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("surveyTime between", value1, value2, "surveytime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("create_time not between", value1, value2, "createTime");
+        public Criteria andSurveytimeNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("surveyTime not between", value1, value2, "surveytime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIsNull() {
-            addCriterion("update_time is null");
+        public Criteria andCreatetimeIsNull() {
+            addCriterion("createTime is null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIsNotNull() {
-            addCriterion("update_time is not null");
+        public Criteria andCreatetimeIsNotNull() {
+            addCriterion("createTime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeEqualTo(Date value) {
-            addCriterion("update_time =", value, "updateTime");
+        public Criteria andCreatetimeEqualTo(Date value) {
+            addCriterion("createTime =", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotEqualTo(Date value) {
-            addCriterion("update_time <>", value, "updateTime");
+        public Criteria andCreatetimeNotEqualTo(Date value) {
+            addCriterion("createTime <>", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThan(Date value) {
-            addCriterion("update_time >", value, "updateTime");
+        public Criteria andCreatetimeGreaterThan(Date value) {
+            addCriterion("createTime >", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("update_time >=", value, "updateTime");
+        public Criteria andCreatetimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("createTime >=", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThan(Date value) {
-            addCriterion("update_time <", value, "updateTime");
+        public Criteria andCreatetimeLessThan(Date value) {
+            addCriterion("createTime <", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("update_time <=", value, "updateTime");
+        public Criteria andCreatetimeLessThanOrEqualTo(Date value) {
+            addCriterion("createTime <=", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIn(List<Date> values) {
-            addCriterion("update_time in", values, "updateTime");
+        public Criteria andCreatetimeIn(List<Date> values) {
+            addCriterion("createTime in", values, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotIn(List<Date> values) {
-            addCriterion("update_time not in", values, "updateTime");
+        public Criteria andCreatetimeNotIn(List<Date> values) {
+            addCriterion("createTime not in", values, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeBetween(Date value1, Date value2) {
-            addCriterion("update_time between", value1, value2, "updateTime");
+        public Criteria andCreatetimeBetween(Date value1, Date value2) {
+            addCriterion("createTime between", value1, value2, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("update_time not between", value1, value2, "updateTime");
+        public Criteria andCreatetimeNotBetween(Date value1, Date value2) {
+            addCriterion("createTime not between", value1, value2, "createtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatetimeIsNull() {
+            addCriterion("updateTime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatetimeIsNotNull() {
+            addCriterion("updateTime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatetimeEqualTo(Date value) {
+            addCriterion("updateTime =", value, "updatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatetimeNotEqualTo(Date value) {
+            addCriterion("updateTime <>", value, "updatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatetimeGreaterThan(Date value) {
+            addCriterion("updateTime >", value, "updatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatetimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("updateTime >=", value, "updatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatetimeLessThan(Date value) {
+            addCriterion("updateTime <", value, "updatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatetimeLessThanOrEqualTo(Date value) {
+            addCriterion("updateTime <=", value, "updatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatetimeIn(List<Date> values) {
+            addCriterion("updateTime in", values, "updatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatetimeNotIn(List<Date> values) {
+            addCriterion("updateTime not in", values, "updatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatetimeBetween(Date value1, Date value2) {
+            addCriterion("updateTime between", value1, value2, "updatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatetimeNotBetween(Date value1, Date value2) {
+            addCriterion("updateTime not between", value1, value2, "updatetime");
             return (Criteria) this;
         }
 
@@ -426,143 +513,73 @@ public class RoadstateExample {
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameIsNull() {
-            addCriterion("road_name is null");
+        public Criteria andRoadnameIsNull() {
+            addCriterion("roadName is null");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameIsNotNull() {
-            addCriterion("road_name is not null");
+        public Criteria andRoadnameIsNotNull() {
+            addCriterion("roadName is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameEqualTo(String value) {
-            addCriterion("road_name =", value, "roadName");
+        public Criteria andRoadnameEqualTo(String value) {
+            addCriterion("roadName =", value, "roadname");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameNotEqualTo(String value) {
-            addCriterion("road_name <>", value, "roadName");
+        public Criteria andRoadnameNotEqualTo(String value) {
+            addCriterion("roadName <>", value, "roadname");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameGreaterThan(String value) {
-            addCriterion("road_name >", value, "roadName");
+        public Criteria andRoadnameGreaterThan(String value) {
+            addCriterion("roadName >", value, "roadname");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameGreaterThanOrEqualTo(String value) {
-            addCriterion("road_name >=", value, "roadName");
+        public Criteria andRoadnameGreaterThanOrEqualTo(String value) {
+            addCriterion("roadName >=", value, "roadname");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameLessThan(String value) {
-            addCriterion("road_name <", value, "roadName");
+        public Criteria andRoadnameLessThan(String value) {
+            addCriterion("roadName <", value, "roadname");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameLessThanOrEqualTo(String value) {
-            addCriterion("road_name <=", value, "roadName");
+        public Criteria andRoadnameLessThanOrEqualTo(String value) {
+            addCriterion("roadName <=", value, "roadname");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameLike(String value) {
-            addCriterion("road_name like", value, "roadName");
+        public Criteria andRoadnameLike(String value) {
+            addCriterion("roadName like", value, "roadname");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameNotLike(String value) {
-            addCriterion("road_name not like", value, "roadName");
+        public Criteria andRoadnameNotLike(String value) {
+            addCriterion("roadName not like", value, "roadname");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameIn(List<String> values) {
-            addCriterion("road_name in", values, "roadName");
+        public Criteria andRoadnameIn(List<String> values) {
+            addCriterion("roadName in", values, "roadname");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameNotIn(List<String> values) {
-            addCriterion("road_name not in", values, "roadName");
+        public Criteria andRoadnameNotIn(List<String> values) {
+            addCriterion("roadName not in", values, "roadname");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameBetween(String value1, String value2) {
-            addCriterion("road_name between", value1, value2, "roadName");
+        public Criteria andRoadnameBetween(String value1, String value2) {
+            addCriterion("roadName between", value1, value2, "roadname");
             return (Criteria) this;
         }
 
-        public Criteria andRoadNameNotBetween(String value1, String value2) {
-            addCriterion("road_name not between", value1, value2, "roadName");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeIsNull() {
-            addCriterion("road_type is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeIsNotNull() {
-            addCriterion("road_type is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeEqualTo(String value) {
-            addCriterion("road_type =", value, "roadType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeNotEqualTo(String value) {
-            addCriterion("road_type <>", value, "roadType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeGreaterThan(String value) {
-            addCriterion("road_type >", value, "roadType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("road_type >=", value, "roadType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeLessThan(String value) {
-            addCriterion("road_type <", value, "roadType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeLessThanOrEqualTo(String value) {
-            addCriterion("road_type <=", value, "roadType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeLike(String value) {
-            addCriterion("road_type like", value, "roadType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeNotLike(String value) {
-            addCriterion("road_type not like", value, "roadType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeIn(List<String> values) {
-            addCriterion("road_type in", values, "roadType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeNotIn(List<String> values) {
-            addCriterion("road_type not in", values, "roadType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeBetween(String value1, String value2) {
-            addCriterion("road_type between", value1, value2, "roadType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoadTypeNotBetween(String value1, String value2) {
-            addCriterion("road_type not between", value1, value2, "roadType");
+        public Criteria andRoadnameNotBetween(String value1, String value2) {
+            addCriterion("roadName not between", value1, value2, "roadname");
             return (Criteria) this;
         }
 
@@ -686,433 +703,433 @@ public class RoadstateExample {
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormIsNull() {
-            addCriterion("section_form is null");
+        public Criteria andSectionIsNull() {
+            addCriterion("section is null");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormIsNotNull() {
-            addCriterion("section_form is not null");
+        public Criteria andSectionIsNotNull() {
+            addCriterion("section is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormEqualTo(String value) {
-            addCriterion("section_form =", value, "sectionForm");
+        public Criteria andSectionEqualTo(String value) {
+            addCriterion("section =", value, "section");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormNotEqualTo(String value) {
-            addCriterion("section_form <>", value, "sectionForm");
+        public Criteria andSectionNotEqualTo(String value) {
+            addCriterion("section <>", value, "section");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormGreaterThan(String value) {
-            addCriterion("section_form >", value, "sectionForm");
+        public Criteria andSectionGreaterThan(String value) {
+            addCriterion("section >", value, "section");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormGreaterThanOrEqualTo(String value) {
-            addCriterion("section_form >=", value, "sectionForm");
+        public Criteria andSectionGreaterThanOrEqualTo(String value) {
+            addCriterion("section >=", value, "section");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormLessThan(String value) {
-            addCriterion("section_form <", value, "sectionForm");
+        public Criteria andSectionLessThan(String value) {
+            addCriterion("section <", value, "section");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormLessThanOrEqualTo(String value) {
-            addCriterion("section_form <=", value, "sectionForm");
+        public Criteria andSectionLessThanOrEqualTo(String value) {
+            addCriterion("section <=", value, "section");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormLike(String value) {
-            addCriterion("section_form like", value, "sectionForm");
+        public Criteria andSectionLike(String value) {
+            addCriterion("section like", value, "section");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormNotLike(String value) {
-            addCriterion("section_form not like", value, "sectionForm");
+        public Criteria andSectionNotLike(String value) {
+            addCriterion("section not like", value, "section");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormIn(List<String> values) {
-            addCriterion("section_form in", values, "sectionForm");
+        public Criteria andSectionIn(List<String> values) {
+            addCriterion("section in", values, "section");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormNotIn(List<String> values) {
-            addCriterion("section_form not in", values, "sectionForm");
+        public Criteria andSectionNotIn(List<String> values) {
+            addCriterion("section not in", values, "section");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormBetween(String value1, String value2) {
-            addCriterion("section_form between", value1, value2, "sectionForm");
+        public Criteria andSectionBetween(String value1, String value2) {
+            addCriterion("section between", value1, value2, "section");
             return (Criteria) this;
         }
 
-        public Criteria andSectionFormNotBetween(String value1, String value2) {
-            addCriterion("section_form not between", value1, value2, "sectionForm");
+        public Criteria andSectionNotBetween(String value1, String value2) {
+            addCriterion("section not between", value1, value2, "section");
             return (Criteria) this;
         }
 
-        public Criteria andMotorwayWidthIsNull() {
-            addCriterion("motorway_width is null");
+        public Criteria andMotorwaywidthIsNull() {
+            addCriterion("motorWayWidth is null");
             return (Criteria) this;
         }
 
-        public Criteria andMotorwayWidthIsNotNull() {
-            addCriterion("motorway_width is not null");
+        public Criteria andMotorwaywidthIsNotNull() {
+            addCriterion("motorWayWidth is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMotorwayWidthEqualTo(BigDecimal value) {
-            addCriterion("motorway_width =", value, "motorwayWidth");
+        public Criteria andMotorwaywidthEqualTo(BigDecimal value) {
+            addCriterion("motorWayWidth =", value, "motorwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andMotorwayWidthNotEqualTo(BigDecimal value) {
-            addCriterion("motorway_width <>", value, "motorwayWidth");
+        public Criteria andMotorwaywidthNotEqualTo(BigDecimal value) {
+            addCriterion("motorWayWidth <>", value, "motorwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andMotorwayWidthGreaterThan(BigDecimal value) {
-            addCriterion("motorway_width >", value, "motorwayWidth");
+        public Criteria andMotorwaywidthGreaterThan(BigDecimal value) {
+            addCriterion("motorWayWidth >", value, "motorwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andMotorwayWidthGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("motorway_width >=", value, "motorwayWidth");
+        public Criteria andMotorwaywidthGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("motorWayWidth >=", value, "motorwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andMotorwayWidthLessThan(BigDecimal value) {
-            addCriterion("motorway_width <", value, "motorwayWidth");
+        public Criteria andMotorwaywidthLessThan(BigDecimal value) {
+            addCriterion("motorWayWidth <", value, "motorwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andMotorwayWidthLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("motorway_width <=", value, "motorwayWidth");
+        public Criteria andMotorwaywidthLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("motorWayWidth <=", value, "motorwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andMotorwayWidthIn(List<BigDecimal> values) {
-            addCriterion("motorway_width in", values, "motorwayWidth");
+        public Criteria andMotorwaywidthIn(List<BigDecimal> values) {
+            addCriterion("motorWayWidth in", values, "motorwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andMotorwayWidthNotIn(List<BigDecimal> values) {
-            addCriterion("motorway_width not in", values, "motorwayWidth");
+        public Criteria andMotorwaywidthNotIn(List<BigDecimal> values) {
+            addCriterion("motorWayWidth not in", values, "motorwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andMotorwayWidthBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("motorway_width between", value1, value2, "motorwayWidth");
+        public Criteria andMotorwaywidthBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("motorWayWidth between", value1, value2, "motorwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andMotorwayWidthNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("motorway_width not between", value1, value2, "motorwayWidth");
+        public Criteria andMotorwaywidthNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("motorWayWidth not between", value1, value2, "motorwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andSuperWayWidthIsNull() {
-            addCriterion("super_way_width is null");
+        public Criteria andSuperwaywidthIsNull() {
+            addCriterion("superWayWidth is null");
             return (Criteria) this;
         }
 
-        public Criteria andSuperWayWidthIsNotNull() {
-            addCriterion("super_way_width is not null");
+        public Criteria andSuperwaywidthIsNotNull() {
+            addCriterion("superWayWidth is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSuperWayWidthEqualTo(BigDecimal value) {
-            addCriterion("super_way_width =", value, "superWayWidth");
+        public Criteria andSuperwaywidthEqualTo(BigDecimal value) {
+            addCriterion("superWayWidth =", value, "superwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andSuperWayWidthNotEqualTo(BigDecimal value) {
-            addCriterion("super_way_width <>", value, "superWayWidth");
+        public Criteria andSuperwaywidthNotEqualTo(BigDecimal value) {
+            addCriterion("superWayWidth <>", value, "superwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andSuperWayWidthGreaterThan(BigDecimal value) {
-            addCriterion("super_way_width >", value, "superWayWidth");
+        public Criteria andSuperwaywidthGreaterThan(BigDecimal value) {
+            addCriterion("superWayWidth >", value, "superwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andSuperWayWidthGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("super_way_width >=", value, "superWayWidth");
+        public Criteria andSuperwaywidthGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("superWayWidth >=", value, "superwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andSuperWayWidthLessThan(BigDecimal value) {
-            addCriterion("super_way_width <", value, "superWayWidth");
+        public Criteria andSuperwaywidthLessThan(BigDecimal value) {
+            addCriterion("superWayWidth <", value, "superwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andSuperWayWidthLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("super_way_width <=", value, "superWayWidth");
+        public Criteria andSuperwaywidthLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("superWayWidth <=", value, "superwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andSuperWayWidthIn(List<BigDecimal> values) {
-            addCriterion("super_way_width in", values, "superWayWidth");
+        public Criteria andSuperwaywidthIn(List<BigDecimal> values) {
+            addCriterion("superWayWidth in", values, "superwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andSuperWayWidthNotIn(List<BigDecimal> values) {
-            addCriterion("super_way_width not in", values, "superWayWidth");
+        public Criteria andSuperwaywidthNotIn(List<BigDecimal> values) {
+            addCriterion("superWayWidth not in", values, "superwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andSuperWayWidthBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("super_way_width between", value1, value2, "superWayWidth");
+        public Criteria andSuperwaywidthBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("superWayWidth between", value1, value2, "superwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andSuperWayWidthNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("super_way_width not between", value1, value2, "superWayWidth");
+        public Criteria andSuperwaywidthNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("superWayWidth not between", value1, value2, "superwaywidth");
             return (Criteria) this;
         }
 
-        public Criteria andPavementWidthIsNull() {
-            addCriterion("pavement_width is null");
+        public Criteria andPavementwidthIsNull() {
+            addCriterion("pavementWidth is null");
             return (Criteria) this;
         }
 
-        public Criteria andPavementWidthIsNotNull() {
-            addCriterion("pavement_width is not null");
+        public Criteria andPavementwidthIsNotNull() {
+            addCriterion("pavementWidth is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPavementWidthEqualTo(BigDecimal value) {
-            addCriterion("pavement_width =", value, "pavementWidth");
+        public Criteria andPavementwidthEqualTo(BigDecimal value) {
+            addCriterion("pavementWidth =", value, "pavementwidth");
             return (Criteria) this;
         }
 
-        public Criteria andPavementWidthNotEqualTo(BigDecimal value) {
-            addCriterion("pavement_width <>", value, "pavementWidth");
+        public Criteria andPavementwidthNotEqualTo(BigDecimal value) {
+            addCriterion("pavementWidth <>", value, "pavementwidth");
             return (Criteria) this;
         }
 
-        public Criteria andPavementWidthGreaterThan(BigDecimal value) {
-            addCriterion("pavement_width >", value, "pavementWidth");
+        public Criteria andPavementwidthGreaterThan(BigDecimal value) {
+            addCriterion("pavementWidth >", value, "pavementwidth");
             return (Criteria) this;
         }
 
-        public Criteria andPavementWidthGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("pavement_width >=", value, "pavementWidth");
+        public Criteria andPavementwidthGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("pavementWidth >=", value, "pavementwidth");
             return (Criteria) this;
         }
 
-        public Criteria andPavementWidthLessThan(BigDecimal value) {
-            addCriterion("pavement_width <", value, "pavementWidth");
+        public Criteria andPavementwidthLessThan(BigDecimal value) {
+            addCriterion("pavementWidth <", value, "pavementwidth");
             return (Criteria) this;
         }
 
-        public Criteria andPavementWidthLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("pavement_width <=", value, "pavementWidth");
+        public Criteria andPavementwidthLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("pavementWidth <=", value, "pavementwidth");
             return (Criteria) this;
         }
 
-        public Criteria andPavementWidthIn(List<BigDecimal> values) {
-            addCriterion("pavement_width in", values, "pavementWidth");
+        public Criteria andPavementwidthIn(List<BigDecimal> values) {
+            addCriterion("pavementWidth in", values, "pavementwidth");
             return (Criteria) this;
         }
 
-        public Criteria andPavementWidthNotIn(List<BigDecimal> values) {
-            addCriterion("pavement_width not in", values, "pavementWidth");
+        public Criteria andPavementwidthNotIn(List<BigDecimal> values) {
+            addCriterion("pavementWidth not in", values, "pavementwidth");
             return (Criteria) this;
         }
 
-        public Criteria andPavementWidthBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("pavement_width between", value1, value2, "pavementWidth");
+        public Criteria andPavementwidthBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("pavementWidth between", value1, value2, "pavementwidth");
             return (Criteria) this;
         }
 
-        public Criteria andPavementWidthNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("pavement_width not between", value1, value2, "pavementWidth");
+        public Criteria andPavementwidthNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("pavementWidth not between", value1, value2, "pavementwidth");
             return (Criteria) this;
         }
 
-        public Criteria andMedianWidthIsNull() {
-            addCriterion("median_width is null");
+        public Criteria andMedianwidthIsNull() {
+            addCriterion("medianWidth is null");
             return (Criteria) this;
         }
 
-        public Criteria andMedianWidthIsNotNull() {
-            addCriterion("median_width is not null");
+        public Criteria andMedianwidthIsNotNull() {
+            addCriterion("medianWidth is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMedianWidthEqualTo(BigDecimal value) {
-            addCriterion("median_width =", value, "medianWidth");
+        public Criteria andMedianwidthEqualTo(BigDecimal value) {
+            addCriterion("medianWidth =", value, "medianwidth");
             return (Criteria) this;
         }
 
-        public Criteria andMedianWidthNotEqualTo(BigDecimal value) {
-            addCriterion("median_width <>", value, "medianWidth");
+        public Criteria andMedianwidthNotEqualTo(BigDecimal value) {
+            addCriterion("medianWidth <>", value, "medianwidth");
             return (Criteria) this;
         }
 
-        public Criteria andMedianWidthGreaterThan(BigDecimal value) {
-            addCriterion("median_width >", value, "medianWidth");
+        public Criteria andMedianwidthGreaterThan(BigDecimal value) {
+            addCriterion("medianWidth >", value, "medianwidth");
             return (Criteria) this;
         }
 
-        public Criteria andMedianWidthGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("median_width >=", value, "medianWidth");
+        public Criteria andMedianwidthGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("medianWidth >=", value, "medianwidth");
             return (Criteria) this;
         }
 
-        public Criteria andMedianWidthLessThan(BigDecimal value) {
-            addCriterion("median_width <", value, "medianWidth");
+        public Criteria andMedianwidthLessThan(BigDecimal value) {
+            addCriterion("medianWidth <", value, "medianwidth");
             return (Criteria) this;
         }
 
-        public Criteria andMedianWidthLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("median_width <=", value, "medianWidth");
+        public Criteria andMedianwidthLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("medianWidth <=", value, "medianwidth");
             return (Criteria) this;
         }
 
-        public Criteria andMedianWidthIn(List<BigDecimal> values) {
-            addCriterion("median_width in", values, "medianWidth");
+        public Criteria andMedianwidthIn(List<BigDecimal> values) {
+            addCriterion("medianWidth in", values, "medianwidth");
             return (Criteria) this;
         }
 
-        public Criteria andMedianWidthNotIn(List<BigDecimal> values) {
-            addCriterion("median_width not in", values, "medianWidth");
+        public Criteria andMedianwidthNotIn(List<BigDecimal> values) {
+            addCriterion("medianWidth not in", values, "medianwidth");
             return (Criteria) this;
         }
 
-        public Criteria andMedianWidthBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("median_width between", value1, value2, "medianWidth");
+        public Criteria andMedianwidthBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("medianWidth between", value1, value2, "medianwidth");
             return (Criteria) this;
         }
 
-        public Criteria andMedianWidthNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("median_width not between", value1, value2, "medianWidth");
+        public Criteria andMedianwidthNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("medianWidth not between", value1, value2, "medianwidth");
             return (Criteria) this;
         }
 
-        public Criteria andSidesSeparateBeltWidthIsNull() {
-            addCriterion("sides_separate_belt_width is null");
+        public Criteria andSidesseparatebeltwidthIsNull() {
+            addCriterion("sidesSeparateBeltWidth is null");
             return (Criteria) this;
         }
 
-        public Criteria andSidesSeparateBeltWidthIsNotNull() {
-            addCriterion("sides_separate_belt_width is not null");
+        public Criteria andSidesseparatebeltwidthIsNotNull() {
+            addCriterion("sidesSeparateBeltWidth is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSidesSeparateBeltWidthEqualTo(BigDecimal value) {
-            addCriterion("sides_separate_belt_width =", value, "sidesSeparateBeltWidth");
+        public Criteria andSidesseparatebeltwidthEqualTo(BigDecimal value) {
+            addCriterion("sidesSeparateBeltWidth =", value, "sidesseparatebeltwidth");
             return (Criteria) this;
         }
 
-        public Criteria andSidesSeparateBeltWidthNotEqualTo(BigDecimal value) {
-            addCriterion("sides_separate_belt_width <>", value, "sidesSeparateBeltWidth");
+        public Criteria andSidesseparatebeltwidthNotEqualTo(BigDecimal value) {
+            addCriterion("sidesSeparateBeltWidth <>", value, "sidesseparatebeltwidth");
             return (Criteria) this;
         }
 
-        public Criteria andSidesSeparateBeltWidthGreaterThan(BigDecimal value) {
-            addCriterion("sides_separate_belt_width >", value, "sidesSeparateBeltWidth");
+        public Criteria andSidesseparatebeltwidthGreaterThan(BigDecimal value) {
+            addCriterion("sidesSeparateBeltWidth >", value, "sidesseparatebeltwidth");
             return (Criteria) this;
         }
 
-        public Criteria andSidesSeparateBeltWidthGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("sides_separate_belt_width >=", value, "sidesSeparateBeltWidth");
+        public Criteria andSidesseparatebeltwidthGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("sidesSeparateBeltWidth >=", value, "sidesseparatebeltwidth");
             return (Criteria) this;
         }
 
-        public Criteria andSidesSeparateBeltWidthLessThan(BigDecimal value) {
-            addCriterion("sides_separate_belt_width <", value, "sidesSeparateBeltWidth");
+        public Criteria andSidesseparatebeltwidthLessThan(BigDecimal value) {
+            addCriterion("sidesSeparateBeltWidth <", value, "sidesseparatebeltwidth");
             return (Criteria) this;
         }
 
-        public Criteria andSidesSeparateBeltWidthLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("sides_separate_belt_width <=", value, "sidesSeparateBeltWidth");
+        public Criteria andSidesseparatebeltwidthLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("sidesSeparateBeltWidth <=", value, "sidesseparatebeltwidth");
             return (Criteria) this;
         }
 
-        public Criteria andSidesSeparateBeltWidthIn(List<BigDecimal> values) {
-            addCriterion("sides_separate_belt_width in", values, "sidesSeparateBeltWidth");
+        public Criteria andSidesseparatebeltwidthIn(List<BigDecimal> values) {
+            addCriterion("sidesSeparateBeltWidth in", values, "sidesseparatebeltwidth");
             return (Criteria) this;
         }
 
-        public Criteria andSidesSeparateBeltWidthNotIn(List<BigDecimal> values) {
-            addCriterion("sides_separate_belt_width not in", values, "sidesSeparateBeltWidth");
+        public Criteria andSidesseparatebeltwidthNotIn(List<BigDecimal> values) {
+            addCriterion("sidesSeparateBeltWidth not in", values, "sidesseparatebeltwidth");
             return (Criteria) this;
         }
 
-        public Criteria andSidesSeparateBeltWidthBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("sides_separate_belt_width between", value1, value2, "sidesSeparateBeltWidth");
+        public Criteria andSidesseparatebeltwidthBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("sidesSeparateBeltWidth between", value1, value2, "sidesseparatebeltwidth");
             return (Criteria) this;
         }
 
-        public Criteria andSidesSeparateBeltWidthNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("sides_separate_belt_width not between", value1, value2, "sidesSeparateBeltWidth");
+        public Criteria andSidesseparatebeltwidthNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("sidesSeparateBeltWidth not between", value1, value2, "sidesseparatebeltwidth");
             return (Criteria) this;
         }
 
-        public Criteria andRedLineWidthIsNull() {
-            addCriterion("red_line_width is null");
+        public Criteria andRedlinewidthIsNull() {
+            addCriterion("redLineWidth is null");
             return (Criteria) this;
         }
 
-        public Criteria andRedLineWidthIsNotNull() {
-            addCriterion("red_line_width is not null");
+        public Criteria andRedlinewidthIsNotNull() {
+            addCriterion("redLineWidth is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRedLineWidthEqualTo(BigDecimal value) {
-            addCriterion("red_line_width =", value, "redLineWidth");
+        public Criteria andRedlinewidthEqualTo(BigDecimal value) {
+            addCriterion("redLineWidth =", value, "redlinewidth");
             return (Criteria) this;
         }
 
-        public Criteria andRedLineWidthNotEqualTo(BigDecimal value) {
-            addCriterion("red_line_width <>", value, "redLineWidth");
+        public Criteria andRedlinewidthNotEqualTo(BigDecimal value) {
+            addCriterion("redLineWidth <>", value, "redlinewidth");
             return (Criteria) this;
         }
 
-        public Criteria andRedLineWidthGreaterThan(BigDecimal value) {
-            addCriterion("red_line_width >", value, "redLineWidth");
+        public Criteria andRedlinewidthGreaterThan(BigDecimal value) {
+            addCriterion("redLineWidth >", value, "redlinewidth");
             return (Criteria) this;
         }
 
-        public Criteria andRedLineWidthGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("red_line_width >=", value, "redLineWidth");
+        public Criteria andRedlinewidthGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("redLineWidth >=", value, "redlinewidth");
             return (Criteria) this;
         }
 
-        public Criteria andRedLineWidthLessThan(BigDecimal value) {
-            addCriterion("red_line_width <", value, "redLineWidth");
+        public Criteria andRedlinewidthLessThan(BigDecimal value) {
+            addCriterion("redLineWidth <", value, "redlinewidth");
             return (Criteria) this;
         }
 
-        public Criteria andRedLineWidthLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("red_line_width <=", value, "redLineWidth");
+        public Criteria andRedlinewidthLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("redLineWidth <=", value, "redlinewidth");
             return (Criteria) this;
         }
 
-        public Criteria andRedLineWidthIn(List<BigDecimal> values) {
-            addCriterion("red_line_width in", values, "redLineWidth");
+        public Criteria andRedlinewidthIn(List<BigDecimal> values) {
+            addCriterion("redLineWidth in", values, "redlinewidth");
             return (Criteria) this;
         }
 
-        public Criteria andRedLineWidthNotIn(List<BigDecimal> values) {
-            addCriterion("red_line_width not in", values, "redLineWidth");
+        public Criteria andRedlinewidthNotIn(List<BigDecimal> values) {
+            addCriterion("redLineWidth not in", values, "redlinewidth");
             return (Criteria) this;
         }
 
-        public Criteria andRedLineWidthBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("red_line_width between", value1, value2, "redLineWidth");
+        public Criteria andRedlinewidthBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("redLineWidth between", value1, value2, "redlinewidth");
             return (Criteria) this;
         }
 
-        public Criteria andRedLineWidthNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("red_line_width not between", value1, value2, "redLineWidth");
+        public Criteria andRedlinewidthNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("redLineWidth not between", value1, value2, "redlinewidth");
             return (Criteria) this;
         }
 
@@ -1256,63 +1273,193 @@ public class RoadstateExample {
             return (Criteria) this;
         }
 
-        public Criteria andRoadbedTypeIdIsNull() {
-            addCriterion("roadbed_type_id is null");
+        public Criteria andRoadlevelIdIsNull() {
+            addCriterion("roadLevel_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andRoadbedTypeIdIsNotNull() {
-            addCriterion("roadbed_type_id is not null");
+        public Criteria andRoadlevelIdIsNotNull() {
+            addCriterion("roadLevel_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRoadbedTypeIdEqualTo(Integer value) {
-            addCriterion("roadbed_type_id =", value, "roadbedTypeId");
+        public Criteria andRoadlevelIdEqualTo(Integer value) {
+            addCriterion("roadLevel_id =", value, "roadlevelId");
             return (Criteria) this;
         }
 
-        public Criteria andRoadbedTypeIdNotEqualTo(Integer value) {
-            addCriterion("roadbed_type_id <>", value, "roadbedTypeId");
+        public Criteria andRoadlevelIdNotEqualTo(Integer value) {
+            addCriterion("roadLevel_id <>", value, "roadlevelId");
             return (Criteria) this;
         }
 
-        public Criteria andRoadbedTypeIdGreaterThan(Integer value) {
-            addCriterion("roadbed_type_id >", value, "roadbedTypeId");
+        public Criteria andRoadlevelIdGreaterThan(Integer value) {
+            addCriterion("roadLevel_id >", value, "roadlevelId");
             return (Criteria) this;
         }
 
-        public Criteria andRoadbedTypeIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("roadbed_type_id >=", value, "roadbedTypeId");
+        public Criteria andRoadlevelIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("roadLevel_id >=", value, "roadlevelId");
             return (Criteria) this;
         }
 
-        public Criteria andRoadbedTypeIdLessThan(Integer value) {
-            addCriterion("roadbed_type_id <", value, "roadbedTypeId");
+        public Criteria andRoadlevelIdLessThan(Integer value) {
+            addCriterion("roadLevel_id <", value, "roadlevelId");
             return (Criteria) this;
         }
 
-        public Criteria andRoadbedTypeIdLessThanOrEqualTo(Integer value) {
-            addCriterion("roadbed_type_id <=", value, "roadbedTypeId");
+        public Criteria andRoadlevelIdLessThanOrEqualTo(Integer value) {
+            addCriterion("roadLevel_id <=", value, "roadlevelId");
             return (Criteria) this;
         }
 
-        public Criteria andRoadbedTypeIdIn(List<Integer> values) {
-            addCriterion("roadbed_type_id in", values, "roadbedTypeId");
+        public Criteria andRoadlevelIdIn(List<Integer> values) {
+            addCriterion("roadLevel_id in", values, "roadlevelId");
             return (Criteria) this;
         }
 
-        public Criteria andRoadbedTypeIdNotIn(List<Integer> values) {
-            addCriterion("roadbed_type_id not in", values, "roadbedTypeId");
+        public Criteria andRoadlevelIdNotIn(List<Integer> values) {
+            addCriterion("roadLevel_id not in", values, "roadlevelId");
             return (Criteria) this;
         }
 
-        public Criteria andRoadbedTypeIdBetween(Integer value1, Integer value2) {
-            addCriterion("roadbed_type_id between", value1, value2, "roadbedTypeId");
+        public Criteria andRoadlevelIdBetween(Integer value1, Integer value2) {
+            addCriterion("roadLevel_id between", value1, value2, "roadlevelId");
             return (Criteria) this;
         }
 
-        public Criteria andRoadbedTypeIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("roadbed_type_id not between", value1, value2, "roadbedTypeId");
+        public Criteria andRoadlevelIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("roadLevel_id not between", value1, value2, "roadlevelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoadbedtypeIdIsNull() {
+            addCriterion("roadbedType_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoadbedtypeIdIsNotNull() {
+            addCriterion("roadbedType_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoadbedtypeIdEqualTo(Integer value) {
+            addCriterion("roadbedType_id =", value, "roadbedtypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoadbedtypeIdNotEqualTo(Integer value) {
+            addCriterion("roadbedType_id <>", value, "roadbedtypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoadbedtypeIdGreaterThan(Integer value) {
+            addCriterion("roadbedType_id >", value, "roadbedtypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoadbedtypeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("roadbedType_id >=", value, "roadbedtypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoadbedtypeIdLessThan(Integer value) {
+            addCriterion("roadbedType_id <", value, "roadbedtypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoadbedtypeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("roadbedType_id <=", value, "roadbedtypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoadbedtypeIdIn(List<Integer> values) {
+            addCriterion("roadbedType_id in", values, "roadbedtypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoadbedtypeIdNotIn(List<Integer> values) {
+            addCriterion("roadbedType_id not in", values, "roadbedtypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoadbedtypeIdBetween(Integer value1, Integer value2) {
+            addCriterion("roadbedType_id between", value1, value2, "roadbedtypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoadbedtypeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("roadbedType_id not between", value1, value2, "roadbedtypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateIsNull() {
+            addCriterion("coordinate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateIsNotNull() {
+            addCriterion("coordinate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateEqualTo(String value) {
+            addCriterion("coordinate =", value, "coordinate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateNotEqualTo(String value) {
+            addCriterion("coordinate <>", value, "coordinate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateGreaterThan(String value) {
+            addCriterion("coordinate >", value, "coordinate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateGreaterThanOrEqualTo(String value) {
+            addCriterion("coordinate >=", value, "coordinate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateLessThan(String value) {
+            addCriterion("coordinate <", value, "coordinate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateLessThanOrEqualTo(String value) {
+            addCriterion("coordinate <=", value, "coordinate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateLike(String value) {
+            addCriterion("coordinate like", value, "coordinate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateNotLike(String value) {
+            addCriterion("coordinate not like", value, "coordinate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateIn(List<String> values) {
+            addCriterion("coordinate in", values, "coordinate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateNotIn(List<String> values) {
+            addCriterion("coordinate not in", values, "coordinate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateBetween(String value1, String value2) {
+            addCriterion("coordinate between", value1, value2, "coordinate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoordinateNotBetween(String value1, String value2) {
+            addCriterion("coordinate not between", value1, value2, "coordinate");
             return (Criteria) this;
         }
     }

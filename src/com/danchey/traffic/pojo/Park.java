@@ -5,13 +5,17 @@ import java.util.Date;
 public class Park {
     private Integer id;
 
-    private Date createTime;
+    private Date surveytime;
 
-    private Date updateTime;
+    private Date createtime;
+
+    private Date updatetime;
 
     private String creater;
 
     private String investigator;
+
+    private String name;
 
     private String area;
 
@@ -21,9 +25,9 @@ public class Park {
 
     private String businessstatus;
 
-    private Boolean issign;
-
     private Integer parktypeId;
+
+    private String coordinate;
 
     public Integer getId() {
         return id;
@@ -33,20 +37,28 @@ public class Park {
         this.id = id;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getSurveytime() {
+        return surveytime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setSurveytime(Date surveytime) {
+        this.surveytime = surveytime;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public Date getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
     }
 
     public String getCreater() {
@@ -63,6 +75,14 @@ public class Park {
 
     public void setInvestigator(String investigator) {
         this.investigator = investigator == null ? null : investigator.trim();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getArea() {
@@ -97,19 +117,19 @@ public class Park {
         this.businessstatus = businessstatus == null ? null : businessstatus.trim();
     }
 
-    public Boolean getIssign() {
-        return issign;
-    }
-
-    public void setIssign(Boolean issign) {
-        this.issign = issign;
-    }
-
     public Integer getParktypeId() {
         return parktypeId;
     }
 
     public void setParktypeId(Integer parktypeId) {
         this.parktypeId = parktypeId;
+    }
+
+    public String getCoordinate() {
+        return coordinate;
+    }
+
+    public void setCoordinate(String coordinate) {
+        this.coordinate = coordinate == null ? null : coordinate.trim();
     }
 }

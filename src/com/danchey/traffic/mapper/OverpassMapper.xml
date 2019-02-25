@@ -3,8 +3,9 @@
 <mapper namespace="com.danchey.traffic.mapper.OverpassMapper" >
   <resultMap id="BaseResultMap" type="com.danchey.traffic.pojo.Overpass" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="surveyTime" property="surveytime" jdbcType="DATE" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
     <result column="creater" property="creater" jdbcType="VARCHAR" />
     <result column="investigator" property="investigator" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -14,6 +15,7 @@
     <result column="disturbance" property="disturbance" jdbcType="VARCHAR" />
     <result column="hasStation" property="hasstation" jdbcType="BIT" />
     <result column="rampType_id" property="ramptypeId" jdbcType="INTEGER" />
+    <result column="coordinate" property="coordinate" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -74,8 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, create_time, update_time, creater, investigator, name, hasAdd, radius, longitudinalGrade, 
-    disturbance, hasStation, rampType_id
+    id, surveyTime, createTime, updateTime, creater, investigator, name, hasAdd, radius, 
+    longitudinalGrade, disturbance, hasStation, rampType_id, coordinate
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.danchey.traffic.pojo.OverpassExample" >
     select
@@ -108,16 +110,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.danchey.traffic.pojo.Overpass" >
-    insert into overpass (id, create_time, update_time, 
-      creater, investigator, name, 
-      hasAdd, radius, longitudinalGrade, 
-      disturbance, hasStation, rampType_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{creater,jdbcType=VARCHAR}, #{investigator,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{hasadd,jdbcType=BIT}, #{radius,jdbcType=DECIMAL}, #{longitudinalgrade,jdbcType=DECIMAL}, 
-      #{disturbance,jdbcType=VARCHAR}, #{hasstation,jdbcType=BIT}, #{ramptypeId,jdbcType=INTEGER}
-      )
+    insert into overpass (id, surveyTime, createTime, 
+      updateTime, creater, investigator, 
+      name, hasAdd, radius, longitudinalGrade, 
+      disturbance, hasStation, rampType_id, 
+      coordinate)
+    values (#{id,jdbcType=INTEGER}, #{surveytime,jdbcType=DATE}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{investigator,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{hasadd,jdbcType=BIT}, #{radius,jdbcType=DECIMAL}, #{longitudinalgrade,jdbcType=DECIMAL}, 
+      #{disturbance,jdbcType=VARCHAR}, #{hasstation,jdbcType=BIT}, #{ramptypeId,jdbcType=INTEGER}, 
+      #{coordinate,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.danchey.traffic.pojo.Overpass" >
     insert into overpass
@@ -125,11 +127,14 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="createTime != null" >
-        create_time,
+      <if test="surveytime != null" >
+        surveyTime,
       </if>
-      <if test="updateTime != null" >
-        update_time,
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
       </if>
       <if test="creater != null" >
         creater,
@@ -158,16 +163,22 @@
       <if test="ramptypeId != null" >
         rampType_id,
       </if>
+      <if test="coordinate != null" >
+        coordinate,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="surveytime != null" >
+        #{surveytime,jdbcType=DATE},
       </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="creater != null" >
         #{creater,jdbcType=VARCHAR},
@@ -196,6 +207,9 @@
       <if test="ramptypeId != null" >
         #{ramptypeId,jdbcType=INTEGER},
       </if>
+      <if test="coordinate != null" >
+        #{coordinate,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.danchey.traffic.pojo.OverpassExample" resultType="java.lang.Integer" >
@@ -210,11 +224,14 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.surveytime != null" >
+        surveyTime = #{record.surveytime,jdbcType=DATE},
       </if>
-      <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.creater != null" >
         creater = #{record.creater,jdbcType=VARCHAR},
@@ -243,6 +260,9 @@
       <if test="record.ramptypeId != null" >
         rampType_id = #{record.ramptypeId,jdbcType=INTEGER},
       </if>
+      <if test="record.coordinate != null" >
+        coordinate = #{record.coordinate,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -251,8 +271,9 @@
   <update id="updateByExample" parameterType="map" >
     update overpass
     set id = #{record.id,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      surveyTime = #{record.surveytime,jdbcType=DATE},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
       creater = #{record.creater,jdbcType=VARCHAR},
       investigator = #{record.investigator,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
@@ -261,7 +282,8 @@
       longitudinalGrade = #{record.longitudinalgrade,jdbcType=DECIMAL},
       disturbance = #{record.disturbance,jdbcType=VARCHAR},
       hasStation = #{record.hasstation,jdbcType=BIT},
-      rampType_id = #{record.ramptypeId,jdbcType=INTEGER}
+      rampType_id = #{record.ramptypeId,jdbcType=INTEGER},
+      coordinate = #{record.coordinate,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -269,11 +291,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.danchey.traffic.pojo.Overpass" >
     update overpass
     <set >
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="surveytime != null" >
+        surveyTime = #{surveytime,jdbcType=DATE},
       </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="creater != null" >
         creater = #{creater,jdbcType=VARCHAR},
@@ -302,13 +327,17 @@
       <if test="ramptypeId != null" >
         rampType_id = #{ramptypeId,jdbcType=INTEGER},
       </if>
+      <if test="coordinate != null" >
+        coordinate = #{coordinate,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.danchey.traffic.pojo.Overpass" >
     update overpass
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
+    set surveyTime = #{surveytime,jdbcType=DATE},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
       creater = #{creater,jdbcType=VARCHAR},
       investigator = #{investigator,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
@@ -317,7 +346,8 @@
       longitudinalGrade = #{longitudinalgrade,jdbcType=DECIMAL},
       disturbance = #{disturbance,jdbcType=VARCHAR},
       hasStation = #{hasstation,jdbcType=BIT},
-      rampType_id = #{ramptypeId,jdbcType=INTEGER}
+      rampType_id = #{ramptypeId,jdbcType=INTEGER},
+      coordinate = #{coordinate,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

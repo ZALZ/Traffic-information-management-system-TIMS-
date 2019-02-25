@@ -5,9 +5,9 @@ import java.util.Date;
 public class Pedestrianflow {
     private Integer id;
 
-    private Date createTime;
+    private Date createtime;
 
-    private Date updateTime;
+    private Date updatetime;
 
     private String creater;
 
@@ -19,6 +19,8 @@ public class Pedestrianflow {
 
     private Short number;
 
+    private Date surveytime;
+
     private Integer intersectionId;
 
     public Integer getId() {
@@ -29,20 +31,20 @@ public class Pedestrianflow {
         this.id = id;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Date getUpdatetime() {
+        return updatetime;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
     }
 
     public String getCreater() {
@@ -83,6 +85,14 @@ public class Pedestrianflow {
 
     public void setNumber(Short number) {
         this.number = number;
+    }
+
+    public Date getSurveytime() {
+        return surveytime;
+    }
+
+    public void setSurveytime(Date surveytime) {
+        this.surveytime = surveytime;
     }
 
     public Integer getIntersectionId() {

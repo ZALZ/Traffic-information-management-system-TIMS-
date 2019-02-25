@@ -6,41 +6,45 @@ import java.util.Date;
 public class Roadstate {
     private Integer id;
 
-    private Date createTime;
+    private Date surveytime;
 
-    private Date updateTime;
+    private Date createtime;
+
+    private Date updatetime;
 
     private String creater;
 
     private String investigator;
 
-    private String roadName;
-
-    private String roadType;
+    private String roadname;
 
     private BigDecimal length;
 
     private BigDecimal incline;
 
-    private String sectionForm;
+    private String section;
 
-    private BigDecimal motorwayWidth;
+    private BigDecimal motorwaywidth;
 
-    private BigDecimal superWayWidth;
+    private BigDecimal superwaywidth;
 
-    private BigDecimal pavementWidth;
+    private BigDecimal pavementwidth;
 
-    private BigDecimal medianWidth;
+    private BigDecimal medianwidth;
 
-    private BigDecimal sidesSeparateBeltWidth;
+    private BigDecimal sidesseparatebeltwidth;
 
-    private BigDecimal redLineWidth;
+    private BigDecimal redlinewidth;
 
     private String start;
 
     private String end;
 
-    private Integer roadbedTypeId;
+    private Integer roadlevelId;
+
+    private Integer roadbedtypeId;
+
+    private String coordinate;
 
     public Integer getId() {
         return id;
@@ -50,20 +54,28 @@ public class Roadstate {
         this.id = id;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getSurveytime() {
+        return surveytime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setSurveytime(Date surveytime) {
+        this.surveytime = surveytime;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public Date getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
     }
 
     public String getCreater() {
@@ -82,20 +94,12 @@ public class Roadstate {
         this.investigator = investigator == null ? null : investigator.trim();
     }
 
-    public String getRoadName() {
-        return roadName;
+    public String getRoadname() {
+        return roadname;
     }
 
-    public void setRoadName(String roadName) {
-        this.roadName = roadName == null ? null : roadName.trim();
-    }
-
-    public String getRoadType() {
-        return roadType;
-    }
-
-    public void setRoadType(String roadType) {
-        this.roadType = roadType == null ? null : roadType.trim();
+    public void setRoadname(String roadname) {
+        this.roadname = roadname == null ? null : roadname.trim();
     }
 
     public BigDecimal getLength() {
@@ -114,60 +118,60 @@ public class Roadstate {
         this.incline = incline;
     }
 
-    public String getSectionForm() {
-        return sectionForm;
+    public String getSection() {
+        return section;
     }
 
-    public void setSectionForm(String sectionForm) {
-        this.sectionForm = sectionForm == null ? null : sectionForm.trim();
+    public void setSection(String section) {
+        this.section = section == null ? null : section.trim();
     }
 
-    public BigDecimal getMotorwayWidth() {
-        return motorwayWidth;
+    public BigDecimal getMotorwaywidth() {
+        return motorwaywidth;
     }
 
-    public void setMotorwayWidth(BigDecimal motorwayWidth) {
-        this.motorwayWidth = motorwayWidth;
+    public void setMotorwaywidth(BigDecimal motorwaywidth) {
+        this.motorwaywidth = motorwaywidth;
     }
 
-    public BigDecimal getSuperWayWidth() {
-        return superWayWidth;
+    public BigDecimal getSuperwaywidth() {
+        return superwaywidth;
     }
 
-    public void setSuperWayWidth(BigDecimal superWayWidth) {
-        this.superWayWidth = superWayWidth;
+    public void setSuperwaywidth(BigDecimal superwaywidth) {
+        this.superwaywidth = superwaywidth;
     }
 
-    public BigDecimal getPavementWidth() {
-        return pavementWidth;
+    public BigDecimal getPavementwidth() {
+        return pavementwidth;
     }
 
-    public void setPavementWidth(BigDecimal pavementWidth) {
-        this.pavementWidth = pavementWidth;
+    public void setPavementwidth(BigDecimal pavementwidth) {
+        this.pavementwidth = pavementwidth;
     }
 
-    public BigDecimal getMedianWidth() {
-        return medianWidth;
+    public BigDecimal getMedianwidth() {
+        return medianwidth;
     }
 
-    public void setMedianWidth(BigDecimal medianWidth) {
-        this.medianWidth = medianWidth;
+    public void setMedianwidth(BigDecimal medianwidth) {
+        this.medianwidth = medianwidth;
     }
 
-    public BigDecimal getSidesSeparateBeltWidth() {
-        return sidesSeparateBeltWidth;
+    public BigDecimal getSidesseparatebeltwidth() {
+        return sidesseparatebeltwidth;
     }
 
-    public void setSidesSeparateBeltWidth(BigDecimal sidesSeparateBeltWidth) {
-        this.sidesSeparateBeltWidth = sidesSeparateBeltWidth;
+    public void setSidesseparatebeltwidth(BigDecimal sidesseparatebeltwidth) {
+        this.sidesseparatebeltwidth = sidesseparatebeltwidth;
     }
 
-    public BigDecimal getRedLineWidth() {
-        return redLineWidth;
+    public BigDecimal getRedlinewidth() {
+        return redlinewidth;
     }
 
-    public void setRedLineWidth(BigDecimal redLineWidth) {
-        this.redLineWidth = redLineWidth;
+    public void setRedlinewidth(BigDecimal redlinewidth) {
+        this.redlinewidth = redlinewidth;
     }
 
     public String getStart() {
@@ -186,11 +190,27 @@ public class Roadstate {
         this.end = end == null ? null : end.trim();
     }
 
-    public Integer getRoadbedTypeId() {
-        return roadbedTypeId;
+    public Integer getRoadlevelId() {
+        return roadlevelId;
     }
 
-    public void setRoadbedTypeId(Integer roadbedTypeId) {
-        this.roadbedTypeId = roadbedTypeId;
+    public void setRoadlevelId(Integer roadlevelId) {
+        this.roadlevelId = roadlevelId;
+    }
+
+    public Integer getRoadbedtypeId() {
+        return roadbedtypeId;
+    }
+
+    public void setRoadbedtypeId(Integer roadbedtypeId) {
+        this.roadbedtypeId = roadbedtypeId;
+    }
+
+    public String getCoordinate() {
+        return coordinate;
+    }
+
+    public void setCoordinate(String coordinate) {
+        this.coordinate = coordinate == null ? null : coordinate.trim();
     }
 }

@@ -3,24 +3,26 @@
 <mapper namespace="com.danchey.traffic.mapper.RoadstateMapper" >
   <resultMap id="BaseResultMap" type="com.danchey.traffic.pojo.Roadstate" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="surveyTime" property="surveytime" jdbcType="DATE" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
     <result column="creater" property="creater" jdbcType="VARCHAR" />
     <result column="investigator" property="investigator" jdbcType="VARCHAR" />
-    <result column="road_name" property="roadName" jdbcType="VARCHAR" />
-    <result column="road_type" property="roadType" jdbcType="VARCHAR" />
+    <result column="roadName" property="roadname" jdbcType="VARCHAR" />
     <result column="length" property="length" jdbcType="DECIMAL" />
     <result column="incline" property="incline" jdbcType="DECIMAL" />
-    <result column="section_form" property="sectionForm" jdbcType="VARCHAR" />
-    <result column="motorway_width" property="motorwayWidth" jdbcType="DECIMAL" />
-    <result column="super_way_width" property="superWayWidth" jdbcType="DECIMAL" />
-    <result column="pavement_width" property="pavementWidth" jdbcType="DECIMAL" />
-    <result column="median_width" property="medianWidth" jdbcType="DECIMAL" />
-    <result column="sides_separate_belt_width" property="sidesSeparateBeltWidth" jdbcType="DECIMAL" />
-    <result column="red_line_width" property="redLineWidth" jdbcType="DECIMAL" />
+    <result column="section" property="section" jdbcType="VARCHAR" />
+    <result column="motorWayWidth" property="motorwaywidth" jdbcType="DECIMAL" />
+    <result column="superWayWidth" property="superwaywidth" jdbcType="DECIMAL" />
+    <result column="pavementWidth" property="pavementwidth" jdbcType="DECIMAL" />
+    <result column="medianWidth" property="medianwidth" jdbcType="DECIMAL" />
+    <result column="sidesSeparateBeltWidth" property="sidesseparatebeltwidth" jdbcType="DECIMAL" />
+    <result column="redLineWidth" property="redlinewidth" jdbcType="DECIMAL" />
     <result column="start" property="start" jdbcType="VARCHAR" />
     <result column="end" property="end" jdbcType="VARCHAR" />
-    <result column="roadbed_type_id" property="roadbedTypeId" jdbcType="INTEGER" />
+    <result column="roadLevel_id" property="roadlevelId" jdbcType="INTEGER" />
+    <result column="roadbedType_id" property="roadbedtypeId" jdbcType="INTEGER" />
+    <result column="coordinate" property="coordinate" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -81,9 +83,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, create_time, update_time, creater, investigator, road_name, road_type, length, 
-    incline, section_form, motorway_width, super_way_width, pavement_width, median_width, 
-    sides_separate_belt_width, red_line_width, start, end, roadbed_type_id
+    id, surveyTime, createTime, updateTime, creater, investigator, roadName, length, 
+    incline, section, motorWayWidth, superWayWidth, pavementWidth, medianWidth, sidesSeparateBeltWidth, 
+    redLineWidth, start, end, roadLevel_id, roadbedType_id, coordinate
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.danchey.traffic.pojo.RoadstateExample" >
     select
@@ -116,20 +118,22 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.danchey.traffic.pojo.Roadstate" >
-    insert into roadstate (id, create_time, update_time, 
-      creater, investigator, road_name, 
-      road_type, length, incline, 
-      section_form, motorway_width, super_way_width, 
-      pavement_width, median_width, sides_separate_belt_width, 
-      red_line_width, start, end, 
-      roadbed_type_id)
-    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{creater,jdbcType=VARCHAR}, #{investigator,jdbcType=VARCHAR}, #{roadName,jdbcType=VARCHAR}, 
-      #{roadType,jdbcType=VARCHAR}, #{length,jdbcType=DECIMAL}, #{incline,jdbcType=DECIMAL}, 
-      #{sectionForm,jdbcType=VARCHAR}, #{motorwayWidth,jdbcType=DECIMAL}, #{superWayWidth,jdbcType=DECIMAL}, 
-      #{pavementWidth,jdbcType=DECIMAL}, #{medianWidth,jdbcType=DECIMAL}, #{sidesSeparateBeltWidth,jdbcType=DECIMAL}, 
-      #{redLineWidth,jdbcType=DECIMAL}, #{start,jdbcType=VARCHAR}, #{end,jdbcType=VARCHAR}, 
-      #{roadbedTypeId,jdbcType=INTEGER})
+    insert into roadstate (id, surveyTime, createTime, 
+      updateTime, creater, investigator, 
+      roadName, length, incline, 
+      section, motorWayWidth, superWayWidth, 
+      pavementWidth, medianWidth, sidesSeparateBeltWidth, 
+      redLineWidth, start, end, 
+      roadLevel_id, roadbedType_id, coordinate
+      )
+    values (#{id,jdbcType=INTEGER}, #{surveytime,jdbcType=DATE}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{investigator,jdbcType=VARCHAR}, 
+      #{roadname,jdbcType=VARCHAR}, #{length,jdbcType=DECIMAL}, #{incline,jdbcType=DECIMAL}, 
+      #{section,jdbcType=VARCHAR}, #{motorwaywidth,jdbcType=DECIMAL}, #{superwaywidth,jdbcType=DECIMAL}, 
+      #{pavementwidth,jdbcType=DECIMAL}, #{medianwidth,jdbcType=DECIMAL}, #{sidesseparatebeltwidth,jdbcType=DECIMAL}, 
+      #{redlinewidth,jdbcType=DECIMAL}, #{start,jdbcType=VARCHAR}, #{end,jdbcType=VARCHAR}, 
+      #{roadlevelId,jdbcType=INTEGER}, #{roadbedtypeId,jdbcType=INTEGER}, #{coordinate,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.danchey.traffic.pojo.Roadstate" >
     insert into roadstate
@@ -137,11 +141,14 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="createTime != null" >
-        create_time,
+      <if test="surveytime != null" >
+        surveyTime,
       </if>
-      <if test="updateTime != null" >
-        update_time,
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
       </if>
       <if test="creater != null" >
         creater,
@@ -149,11 +156,8 @@
       <if test="investigator != null" >
         investigator,
       </if>
-      <if test="roadName != null" >
-        road_name,
-      </if>
-      <if test="roadType != null" >
-        road_type,
+      <if test="roadname != null" >
+        roadName,
       </if>
       <if test="length != null" >
         length,
@@ -161,26 +165,26 @@
       <if test="incline != null" >
         incline,
       </if>
-      <if test="sectionForm != null" >
-        section_form,
+      <if test="section != null" >
+        section,
       </if>
-      <if test="motorwayWidth != null" >
-        motorway_width,
+      <if test="motorwaywidth != null" >
+        motorWayWidth,
       </if>
-      <if test="superWayWidth != null" >
-        super_way_width,
+      <if test="superwaywidth != null" >
+        superWayWidth,
       </if>
-      <if test="pavementWidth != null" >
-        pavement_width,
+      <if test="pavementwidth != null" >
+        pavementWidth,
       </if>
-      <if test="medianWidth != null" >
-        median_width,
+      <if test="medianwidth != null" >
+        medianWidth,
       </if>
-      <if test="sidesSeparateBeltWidth != null" >
-        sides_separate_belt_width,
+      <if test="sidesseparatebeltwidth != null" >
+        sidesSeparateBeltWidth,
       </if>
-      <if test="redLineWidth != null" >
-        red_line_width,
+      <if test="redlinewidth != null" >
+        redLineWidth,
       </if>
       <if test="start != null" >
         start,
@@ -188,19 +192,28 @@
       <if test="end != null" >
         end,
       </if>
-      <if test="roadbedTypeId != null" >
-        roadbed_type_id,
+      <if test="roadlevelId != null" >
+        roadLevel_id,
+      </if>
+      <if test="roadbedtypeId != null" >
+        roadbedType_id,
+      </if>
+      <if test="coordinate != null" >
+        coordinate,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="surveytime != null" >
+        #{surveytime,jdbcType=DATE},
       </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="creater != null" >
         #{creater,jdbcType=VARCHAR},
@@ -208,11 +221,8 @@
       <if test="investigator != null" >
         #{investigator,jdbcType=VARCHAR},
       </if>
-      <if test="roadName != null" >
-        #{roadName,jdbcType=VARCHAR},
-      </if>
-      <if test="roadType != null" >
-        #{roadType,jdbcType=VARCHAR},
+      <if test="roadname != null" >
+        #{roadname,jdbcType=VARCHAR},
       </if>
       <if test="length != null" >
         #{length,jdbcType=DECIMAL},
@@ -220,26 +230,26 @@
       <if test="incline != null" >
         #{incline,jdbcType=DECIMAL},
       </if>
-      <if test="sectionForm != null" >
-        #{sectionForm,jdbcType=VARCHAR},
+      <if test="section != null" >
+        #{section,jdbcType=VARCHAR},
       </if>
-      <if test="motorwayWidth != null" >
-        #{motorwayWidth,jdbcType=DECIMAL},
+      <if test="motorwaywidth != null" >
+        #{motorwaywidth,jdbcType=DECIMAL},
       </if>
-      <if test="superWayWidth != null" >
-        #{superWayWidth,jdbcType=DECIMAL},
+      <if test="superwaywidth != null" >
+        #{superwaywidth,jdbcType=DECIMAL},
       </if>
-      <if test="pavementWidth != null" >
-        #{pavementWidth,jdbcType=DECIMAL},
+      <if test="pavementwidth != null" >
+        #{pavementwidth,jdbcType=DECIMAL},
       </if>
-      <if test="medianWidth != null" >
-        #{medianWidth,jdbcType=DECIMAL},
+      <if test="medianwidth != null" >
+        #{medianwidth,jdbcType=DECIMAL},
       </if>
-      <if test="sidesSeparateBeltWidth != null" >
-        #{sidesSeparateBeltWidth,jdbcType=DECIMAL},
+      <if test="sidesseparatebeltwidth != null" >
+        #{sidesseparatebeltwidth,jdbcType=DECIMAL},
       </if>
-      <if test="redLineWidth != null" >
-        #{redLineWidth,jdbcType=DECIMAL},
+      <if test="redlinewidth != null" >
+        #{redlinewidth,jdbcType=DECIMAL},
       </if>
       <if test="start != null" >
         #{start,jdbcType=VARCHAR},
@@ -247,8 +257,14 @@
       <if test="end != null" >
         #{end,jdbcType=VARCHAR},
       </if>
-      <if test="roadbedTypeId != null" >
-        #{roadbedTypeId,jdbcType=INTEGER},
+      <if test="roadlevelId != null" >
+        #{roadlevelId,jdbcType=INTEGER},
+      </if>
+      <if test="roadbedtypeId != null" >
+        #{roadbedtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="coordinate != null" >
+        #{coordinate,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -264,11 +280,14 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.surveytime != null" >
+        surveyTime = #{record.surveytime,jdbcType=DATE},
       </if>
-      <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.creater != null" >
         creater = #{record.creater,jdbcType=VARCHAR},
@@ -276,11 +295,8 @@
       <if test="record.investigator != null" >
         investigator = #{record.investigator,jdbcType=VARCHAR},
       </if>
-      <if test="record.roadName != null" >
-        road_name = #{record.roadName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.roadType != null" >
-        road_type = #{record.roadType,jdbcType=VARCHAR},
+      <if test="record.roadname != null" >
+        roadName = #{record.roadname,jdbcType=VARCHAR},
       </if>
       <if test="record.length != null" >
         length = #{record.length,jdbcType=DECIMAL},
@@ -288,26 +304,26 @@
       <if test="record.incline != null" >
         incline = #{record.incline,jdbcType=DECIMAL},
       </if>
-      <if test="record.sectionForm != null" >
-        section_form = #{record.sectionForm,jdbcType=VARCHAR},
+      <if test="record.section != null" >
+        section = #{record.section,jdbcType=VARCHAR},
       </if>
-      <if test="record.motorwayWidth != null" >
-        motorway_width = #{record.motorwayWidth,jdbcType=DECIMAL},
+      <if test="record.motorwaywidth != null" >
+        motorWayWidth = #{record.motorwaywidth,jdbcType=DECIMAL},
       </if>
-      <if test="record.superWayWidth != null" >
-        super_way_width = #{record.superWayWidth,jdbcType=DECIMAL},
+      <if test="record.superwaywidth != null" >
+        superWayWidth = #{record.superwaywidth,jdbcType=DECIMAL},
       </if>
-      <if test="record.pavementWidth != null" >
-        pavement_width = #{record.pavementWidth,jdbcType=DECIMAL},
+      <if test="record.pavementwidth != null" >
+        pavementWidth = #{record.pavementwidth,jdbcType=DECIMAL},
       </if>
-      <if test="record.medianWidth != null" >
-        median_width = #{record.medianWidth,jdbcType=DECIMAL},
+      <if test="record.medianwidth != null" >
+        medianWidth = #{record.medianwidth,jdbcType=DECIMAL},
       </if>
-      <if test="record.sidesSeparateBeltWidth != null" >
-        sides_separate_belt_width = #{record.sidesSeparateBeltWidth,jdbcType=DECIMAL},
+      <if test="record.sidesseparatebeltwidth != null" >
+        sidesSeparateBeltWidth = #{record.sidesseparatebeltwidth,jdbcType=DECIMAL},
       </if>
-      <if test="record.redLineWidth != null" >
-        red_line_width = #{record.redLineWidth,jdbcType=DECIMAL},
+      <if test="record.redlinewidth != null" >
+        redLineWidth = #{record.redlinewidth,jdbcType=DECIMAL},
       </if>
       <if test="record.start != null" >
         start = #{record.start,jdbcType=VARCHAR},
@@ -315,8 +331,14 @@
       <if test="record.end != null" >
         end = #{record.end,jdbcType=VARCHAR},
       </if>
-      <if test="record.roadbedTypeId != null" >
-        roadbed_type_id = #{record.roadbedTypeId,jdbcType=INTEGER},
+      <if test="record.roadlevelId != null" >
+        roadLevel_id = #{record.roadlevelId,jdbcType=INTEGER},
+      </if>
+      <if test="record.roadbedtypeId != null" >
+        roadbedType_id = #{record.roadbedtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.coordinate != null" >
+        coordinate = #{record.coordinate,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -326,24 +348,26 @@
   <update id="updateByExample" parameterType="map" >
     update roadstate
     set id = #{record.id,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      surveyTime = #{record.surveytime,jdbcType=DATE},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
       creater = #{record.creater,jdbcType=VARCHAR},
       investigator = #{record.investigator,jdbcType=VARCHAR},
-      road_name = #{record.roadName,jdbcType=VARCHAR},
-      road_type = #{record.roadType,jdbcType=VARCHAR},
+      roadName = #{record.roadname,jdbcType=VARCHAR},
       length = #{record.length,jdbcType=DECIMAL},
       incline = #{record.incline,jdbcType=DECIMAL},
-      section_form = #{record.sectionForm,jdbcType=VARCHAR},
-      motorway_width = #{record.motorwayWidth,jdbcType=DECIMAL},
-      super_way_width = #{record.superWayWidth,jdbcType=DECIMAL},
-      pavement_width = #{record.pavementWidth,jdbcType=DECIMAL},
-      median_width = #{record.medianWidth,jdbcType=DECIMAL},
-      sides_separate_belt_width = #{record.sidesSeparateBeltWidth,jdbcType=DECIMAL},
-      red_line_width = #{record.redLineWidth,jdbcType=DECIMAL},
+      section = #{record.section,jdbcType=VARCHAR},
+      motorWayWidth = #{record.motorwaywidth,jdbcType=DECIMAL},
+      superWayWidth = #{record.superwaywidth,jdbcType=DECIMAL},
+      pavementWidth = #{record.pavementwidth,jdbcType=DECIMAL},
+      medianWidth = #{record.medianwidth,jdbcType=DECIMAL},
+      sidesSeparateBeltWidth = #{record.sidesseparatebeltwidth,jdbcType=DECIMAL},
+      redLineWidth = #{record.redlinewidth,jdbcType=DECIMAL},
       start = #{record.start,jdbcType=VARCHAR},
       end = #{record.end,jdbcType=VARCHAR},
-      roadbed_type_id = #{record.roadbedTypeId,jdbcType=INTEGER}
+      roadLevel_id = #{record.roadlevelId,jdbcType=INTEGER},
+      roadbedType_id = #{record.roadbedtypeId,jdbcType=INTEGER},
+      coordinate = #{record.coordinate,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -351,11 +375,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.danchey.traffic.pojo.Roadstate" >
     update roadstate
     <set >
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="surveytime != null" >
+        surveyTime = #{surveytime,jdbcType=DATE},
       </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="creater != null" >
         creater = #{creater,jdbcType=VARCHAR},
@@ -363,11 +390,8 @@
       <if test="investigator != null" >
         investigator = #{investigator,jdbcType=VARCHAR},
       </if>
-      <if test="roadName != null" >
-        road_name = #{roadName,jdbcType=VARCHAR},
-      </if>
-      <if test="roadType != null" >
-        road_type = #{roadType,jdbcType=VARCHAR},
+      <if test="roadname != null" >
+        roadName = #{roadname,jdbcType=VARCHAR},
       </if>
       <if test="length != null" >
         length = #{length,jdbcType=DECIMAL},
@@ -375,26 +399,26 @@
       <if test="incline != null" >
         incline = #{incline,jdbcType=DECIMAL},
       </if>
-      <if test="sectionForm != null" >
-        section_form = #{sectionForm,jdbcType=VARCHAR},
+      <if test="section != null" >
+        section = #{section,jdbcType=VARCHAR},
       </if>
-      <if test="motorwayWidth != null" >
-        motorway_width = #{motorwayWidth,jdbcType=DECIMAL},
+      <if test="motorwaywidth != null" >
+        motorWayWidth = #{motorwaywidth,jdbcType=DECIMAL},
       </if>
-      <if test="superWayWidth != null" >
-        super_way_width = #{superWayWidth,jdbcType=DECIMAL},
+      <if test="superwaywidth != null" >
+        superWayWidth = #{superwaywidth,jdbcType=DECIMAL},
       </if>
-      <if test="pavementWidth != null" >
-        pavement_width = #{pavementWidth,jdbcType=DECIMAL},
+      <if test="pavementwidth != null" >
+        pavementWidth = #{pavementwidth,jdbcType=DECIMAL},
       </if>
-      <if test="medianWidth != null" >
-        median_width = #{medianWidth,jdbcType=DECIMAL},
+      <if test="medianwidth != null" >
+        medianWidth = #{medianwidth,jdbcType=DECIMAL},
       </if>
-      <if test="sidesSeparateBeltWidth != null" >
-        sides_separate_belt_width = #{sidesSeparateBeltWidth,jdbcType=DECIMAL},
+      <if test="sidesseparatebeltwidth != null" >
+        sidesSeparateBeltWidth = #{sidesseparatebeltwidth,jdbcType=DECIMAL},
       </if>
-      <if test="redLineWidth != null" >
-        red_line_width = #{redLineWidth,jdbcType=DECIMAL},
+      <if test="redlinewidth != null" >
+        redLineWidth = #{redlinewidth,jdbcType=DECIMAL},
       </if>
       <if test="start != null" >
         start = #{start,jdbcType=VARCHAR},
@@ -402,32 +426,40 @@
       <if test="end != null" >
         end = #{end,jdbcType=VARCHAR},
       </if>
-      <if test="roadbedTypeId != null" >
-        roadbed_type_id = #{roadbedTypeId,jdbcType=INTEGER},
+      <if test="roadlevelId != null" >
+        roadLevel_id = #{roadlevelId,jdbcType=INTEGER},
+      </if>
+      <if test="roadbedtypeId != null" >
+        roadbedType_id = #{roadbedtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="coordinate != null" >
+        coordinate = #{coordinate,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.danchey.traffic.pojo.Roadstate" >
     update roadstate
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
+    set surveyTime = #{surveytime,jdbcType=DATE},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
       creater = #{creater,jdbcType=VARCHAR},
       investigator = #{investigator,jdbcType=VARCHAR},
-      road_name = #{roadName,jdbcType=VARCHAR},
-      road_type = #{roadType,jdbcType=VARCHAR},
+      roadName = #{roadname,jdbcType=VARCHAR},
       length = #{length,jdbcType=DECIMAL},
       incline = #{incline,jdbcType=DECIMAL},
-      section_form = #{sectionForm,jdbcType=VARCHAR},
-      motorway_width = #{motorwayWidth,jdbcType=DECIMAL},
-      super_way_width = #{superWayWidth,jdbcType=DECIMAL},
-      pavement_width = #{pavementWidth,jdbcType=DECIMAL},
-      median_width = #{medianWidth,jdbcType=DECIMAL},
-      sides_separate_belt_width = #{sidesSeparateBeltWidth,jdbcType=DECIMAL},
-      red_line_width = #{redLineWidth,jdbcType=DECIMAL},
+      section = #{section,jdbcType=VARCHAR},
+      motorWayWidth = #{motorwaywidth,jdbcType=DECIMAL},
+      superWayWidth = #{superwaywidth,jdbcType=DECIMAL},
+      pavementWidth = #{pavementwidth,jdbcType=DECIMAL},
+      medianWidth = #{medianwidth,jdbcType=DECIMAL},
+      sidesSeparateBeltWidth = #{sidesseparatebeltwidth,jdbcType=DECIMAL},
+      redLineWidth = #{redlinewidth,jdbcType=DECIMAL},
       start = #{start,jdbcType=VARCHAR},
       end = #{end,jdbcType=VARCHAR},
-      roadbed_type_id = #{roadbedTypeId,jdbcType=INTEGER}
+      roadLevel_id = #{roadlevelId,jdbcType=INTEGER},
+      roadbedType_id = #{roadbedtypeId,jdbcType=INTEGER},
+      coordinate = #{coordinate,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
