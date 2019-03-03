@@ -45,7 +45,7 @@ public class Roadstate {
     private Integer roadbedtypeId;
 
     private String coordinate;
-
+    
     public Integer getId() {
         return id;
     }
@@ -213,4 +213,15 @@ public class Roadstate {
     public void setCoordinate(String coordinate) {
         this.coordinate = coordinate == null ? null : coordinate.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Roadstate [id=" + id + ", surveytime=" + surveytime + ", createtime=" + createtime + ", updatetime="
+				+ updatetime + ", creater=" + creater + ", investigator=" + investigator + ", roadname=" + roadname
+				+ ", length=" + length + ", incline=" + incline + ", section=" + section + ", motorwaywidth="
+				+ motorwaywidth + ", superwaywidth=" + superwaywidth + ", pavementwidth=" + pavementwidth
+				+ ", medianwidth=" + medianwidth + ", sidesseparatebeltwidth=" + sidesseparatebeltwidth
+				+ ", redlinewidth=" + redlinewidth + ", start=" + start + ", end=" + end + ", roadlevelId="
+				+ roadlevelId + ", roadbedtypeId=" + roadbedtypeId + ", coordinate=" + coordinate + "]";
+	}
 }
