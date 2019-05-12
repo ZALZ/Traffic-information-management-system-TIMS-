@@ -9,7 +9,8 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 配置controller扫描包 -->
-	<context:component-scan base-package="com.danchey.traffic.controller"></context:component-scan>
+	<context:component-scan
+		base-package="com.danchey.traffic.controller"></context:component-scan>
 
 	<!-- 配置驱动 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
@@ -21,15 +22,21 @@
 		<property name="prefix" value="/jsp/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	
-	<!-- 配置JSON数据适配器 -->
-	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-		<property name="messageConverters">
-			<list>
-				<bean class=""></bean>
-			</list>
-		</property>
-	</bean> -->
+
+	<!-- 配置拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/index.*" />
+			<mvc:mapping path="/infra/**"/>
+			<mvc:mapping path="/intersection/**"/>
+			<mvc:mapping path="/overpass/**"/>
+			<mvc:mapping path="/round/**"/>
+			<mvc:mapping path="/park/**"/>
+			<mvc:mapping path="/people/**"/>
+			<bean class="com.danchey.traffic.interceptor.CheckLogin" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 
 
 </beans>

@@ -1,9 +1,7 @@
 package com.danchey.traffic.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,12 +15,10 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.danchey.traffic.pojo.RoadStateQueryVo;
-import com.danchey.traffic.pojo.Alltype;
+import com.danchey.traffic.controller.advance.RoadAdvance;
 import com.danchey.traffic.pojo.Roadstate;
-import com.danchey.traffic.service.AllTypeService;
-import com.danchey.traffic.service.RoadStateQueryVoService;
 import com.danchey.traffic.service.RoadStateService;
+import com.github.pagehelper.PageInfo;
 
 /**
  * TrafficController层
@@ -37,21 +33,19 @@ public class InfraController {
 	@Autowired
 	private RoadStateService roadStateService;
 
-	@Autowired
-	private RoadStateQueryVoService roadStateQueryVoService;
 
 	@RequestMapping(value = "/roadstate.do")
 	public String infraRoad(Model model, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-		/**
-		 * 获取全部道路方法
-		 * 
-		 */
-		
-		List<RoadStateQueryVo> roadStateQueryVoList = roadStateQueryVoService.selectByPage(1,model);
-		
-		model.addAttribute("roadListVo", roadStateQueryVoList);
 		return "infrastructure/roadstate";
-	}
+	}	
+	
+	@RequestMapping(value = "/search.do")
+	public @ResponseBody PageInfo search(RoadAdvance advance,HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+		
+		PageInfo info = roadStateService.selectByAdvance(advance);
+		return info;
+	}	
+	
 
 	
 	
@@ -59,7 +53,6 @@ public class InfraController {
 	public @ResponseBody Boolean insert(Roadstate roadstate, HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse) {
 
-		roadstate.setCoordinate("路径乱七八糟的东西");
 		roadstate.setCreatetime(new Date());
 		roadstate.setUpdatetime(new Date());
 		roadstate.setCreater("danchey");
@@ -71,24 +64,24 @@ public class InfraController {
 	}
 	
 	@RequestMapping(value = "/selectById.do")
-	public @ResponseBody RoadStateQueryVo selectById(int id){
-		RoadStateQueryVo road = roadStateQueryVoService.selectByRoadId(id);
-		return road;
+	public @ResponseBody Roadstate selectById(int id){
+		Roadstate roadstate = roadStateService.selectByPrimaryKey(id);
+		return roadstate;
 	}
 	
 	@RequestMapping(value = "/update.do")
-	public @ResponseBody RoadStateQueryVo update(Roadstate roadstate) {		
+	public @ResponseBody Roadstate update(Roadstate roadstate) {		
 		int updata = roadStateService.updata(roadstate);
-		RoadStateQueryVo roadStateQueryVo = roadStateQueryVoService.selectByRoadId(roadstate.getId());
+		Roadstate roadstate2 = roadStateService.selectByPrimaryKey(roadstate.getId());
 		if(updata==0) {
 			return null;
 		}
-		return roadStateQueryVo;
+		return roadstate2;
 		
 	}
 
 	@RequestMapping(value = "/delete.do")
-	public @ResponseBody Boolean delete(int id) {		
+	public @ResponseBody Boolean delete(int id) {
 		int line = roadStateService.deleteByPrimaryKey(id);
 		return true;
 	}

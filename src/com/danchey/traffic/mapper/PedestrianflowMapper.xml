@@ -7,11 +7,27 @@
     <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
     <result column="creater" property="creater" jdbcType="VARCHAR" />
     <result column="investigator" property="investigator" jdbcType="VARCHAR" />
-    <result column="total" property="total" jdbcType="SMALLINT" />
-    <result column="violation" property="violation" jdbcType="SMALLINT" />
-    <result column="number" property="number" jdbcType="SMALLINT" />
-    <result column="surveyTime" property="surveytime" jdbcType="TIMESTAMP" />
+    <result column="total_10" property="total10" jdbcType="INTEGER" />
+    <result column="violation_10" property="violation10" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="surveyTime" property="surveytime" jdbcType="DATE" />
     <result column="intersection_id" property="intersectionId" jdbcType="INTEGER" />
+    <result column="total_11" property="total11" jdbcType="INTEGER" />
+    <result column="total_14" property="total14" jdbcType="INTEGER" />
+    <result column="total_15" property="total15" jdbcType="INTEGER" />
+    <result column="total_16" property="total16" jdbcType="INTEGER" />
+    <result column="total_17" property="total17" jdbcType="INTEGER" />
+    <result column="total_8" property="total8" jdbcType="INTEGER" />
+    <result column="total_9" property="total9" jdbcType="INTEGER" />
+    <result column="violation_11" property="violation11" jdbcType="INTEGER" />
+    <result column="violation_14" property="violation14" jdbcType="INTEGER" />
+    <result column="violation_15" property="violation15" jdbcType="INTEGER" />
+    <result column="violation_16" property="violation16" jdbcType="INTEGER" />
+    <result column="violation_17" property="violation17" jdbcType="INTEGER" />
+    <result column="violation_8" property="violation8" jdbcType="INTEGER" />
+    <result column="violation_9" property="violation9" jdbcType="INTEGER" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+    <result column="violation" property="violation" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,8 +88,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, createTime, updateTime, creater, investigator, total, violation, number, surveyTime, 
-    intersection_id
+    id, createTime, updateTime, creater, investigator, total_10, violation_10, number, 
+    surveyTime, intersection_id, total_11, total_14, total_15, total_16, total_17, total_8, 
+    total_9, violation_11, violation_14, violation_15, violation_16, violation_17, violation_8, 
+    violation_9, total, violation
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.danchey.traffic.pojo.PedestrianflowExample" >
     select
@@ -107,13 +125,23 @@
   </delete>
   <insert id="insert" parameterType="com.danchey.traffic.pojo.Pedestrianflow" >
     insert into pedestrianflow (id, createTime, updateTime, 
-      creater, investigator, total, 
-      violation, number, surveyTime, 
-      intersection_id)
+      creater, investigator, total_10, 
+      violation_10, number, surveyTime, 
+      intersection_id, total_11, total_14, 
+      total_15, total_16, total_17, 
+      total_8, total_9, violation_11, 
+      violation_14, violation_15, violation_16, 
+      violation_17, violation_8, violation_9, 
+      total, violation)
     values (#{id,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
-      #{creater,jdbcType=VARCHAR}, #{investigator,jdbcType=VARCHAR}, #{total,jdbcType=SMALLINT}, 
-      #{violation,jdbcType=SMALLINT}, #{number,jdbcType=SMALLINT}, #{surveytime,jdbcType=TIMESTAMP}, 
-      #{intersectionId,jdbcType=INTEGER})
+      #{creater,jdbcType=VARCHAR}, #{investigator,jdbcType=VARCHAR}, #{total10,jdbcType=INTEGER}, 
+      #{violation10,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, #{surveytime,jdbcType=DATE}, 
+      #{intersectionId,jdbcType=INTEGER}, #{total11,jdbcType=INTEGER}, #{total14,jdbcType=INTEGER}, 
+      #{total15,jdbcType=INTEGER}, #{total16,jdbcType=INTEGER}, #{total17,jdbcType=INTEGER}, 
+      #{total8,jdbcType=INTEGER}, #{total9,jdbcType=INTEGER}, #{violation11,jdbcType=INTEGER}, 
+      #{violation14,jdbcType=INTEGER}, #{violation15,jdbcType=INTEGER}, #{violation16,jdbcType=INTEGER}, 
+      #{violation17,jdbcType=INTEGER}, #{violation8,jdbcType=INTEGER}, #{violation9,jdbcType=INTEGER}, 
+      #{total,jdbcType=INTEGER}, #{violation,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.danchey.traffic.pojo.Pedestrianflow" >
     insert into pedestrianflow
@@ -133,11 +161,11 @@
       <if test="investigator != null" >
         investigator,
       </if>
-      <if test="total != null" >
-        total,
+      <if test="total10 != null" >
+        total_10,
       </if>
-      <if test="violation != null" >
-        violation,
+      <if test="violation10 != null" >
+        violation_10,
       </if>
       <if test="number != null" >
         number,
@@ -147,6 +175,54 @@
       </if>
       <if test="intersectionId != null" >
         intersection_id,
+      </if>
+      <if test="total11 != null" >
+        total_11,
+      </if>
+      <if test="total14 != null" >
+        total_14,
+      </if>
+      <if test="total15 != null" >
+        total_15,
+      </if>
+      <if test="total16 != null" >
+        total_16,
+      </if>
+      <if test="total17 != null" >
+        total_17,
+      </if>
+      <if test="total8 != null" >
+        total_8,
+      </if>
+      <if test="total9 != null" >
+        total_9,
+      </if>
+      <if test="violation11 != null" >
+        violation_11,
+      </if>
+      <if test="violation14 != null" >
+        violation_14,
+      </if>
+      <if test="violation15 != null" >
+        violation_15,
+      </if>
+      <if test="violation16 != null" >
+        violation_16,
+      </if>
+      <if test="violation17 != null" >
+        violation_17,
+      </if>
+      <if test="violation8 != null" >
+        violation_8,
+      </if>
+      <if test="violation9 != null" >
+        violation_9,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="violation != null" >
+        violation,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -165,20 +241,68 @@
       <if test="investigator != null" >
         #{investigator,jdbcType=VARCHAR},
       </if>
-      <if test="total != null" >
-        #{total,jdbcType=SMALLINT},
+      <if test="total10 != null" >
+        #{total10,jdbcType=INTEGER},
       </if>
-      <if test="violation != null" >
-        #{violation,jdbcType=SMALLINT},
+      <if test="violation10 != null" >
+        #{violation10,jdbcType=INTEGER},
       </if>
       <if test="number != null" >
-        #{number,jdbcType=SMALLINT},
+        #{number,jdbcType=INTEGER},
       </if>
       <if test="surveytime != null" >
-        #{surveytime,jdbcType=TIMESTAMP},
+        #{surveytime,jdbcType=DATE},
       </if>
       <if test="intersectionId != null" >
         #{intersectionId,jdbcType=INTEGER},
+      </if>
+      <if test="total11 != null" >
+        #{total11,jdbcType=INTEGER},
+      </if>
+      <if test="total14 != null" >
+        #{total14,jdbcType=INTEGER},
+      </if>
+      <if test="total15 != null" >
+        #{total15,jdbcType=INTEGER},
+      </if>
+      <if test="total16 != null" >
+        #{total16,jdbcType=INTEGER},
+      </if>
+      <if test="total17 != null" >
+        #{total17,jdbcType=INTEGER},
+      </if>
+      <if test="total8 != null" >
+        #{total8,jdbcType=INTEGER},
+      </if>
+      <if test="total9 != null" >
+        #{total9,jdbcType=INTEGER},
+      </if>
+      <if test="violation11 != null" >
+        #{violation11,jdbcType=INTEGER},
+      </if>
+      <if test="violation14 != null" >
+        #{violation14,jdbcType=INTEGER},
+      </if>
+      <if test="violation15 != null" >
+        #{violation15,jdbcType=INTEGER},
+      </if>
+      <if test="violation16 != null" >
+        #{violation16,jdbcType=INTEGER},
+      </if>
+      <if test="violation17 != null" >
+        #{violation17,jdbcType=INTEGER},
+      </if>
+      <if test="violation8 != null" >
+        #{violation8,jdbcType=INTEGER},
+      </if>
+      <if test="violation9 != null" >
+        #{violation9,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=INTEGER},
+      </if>
+      <if test="violation != null" >
+        #{violation,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -206,20 +330,68 @@
       <if test="record.investigator != null" >
         investigator = #{record.investigator,jdbcType=VARCHAR},
       </if>
-      <if test="record.total != null" >
-        total = #{record.total,jdbcType=SMALLINT},
+      <if test="record.total10 != null" >
+        total_10 = #{record.total10,jdbcType=INTEGER},
       </if>
-      <if test="record.violation != null" >
-        violation = #{record.violation,jdbcType=SMALLINT},
+      <if test="record.violation10 != null" >
+        violation_10 = #{record.violation10,jdbcType=INTEGER},
       </if>
       <if test="record.number != null" >
-        number = #{record.number,jdbcType=SMALLINT},
+        number = #{record.number,jdbcType=INTEGER},
       </if>
       <if test="record.surveytime != null" >
-        surveyTime = #{record.surveytime,jdbcType=TIMESTAMP},
+        surveyTime = #{record.surveytime,jdbcType=DATE},
       </if>
       <if test="record.intersectionId != null" >
         intersection_id = #{record.intersectionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.total11 != null" >
+        total_11 = #{record.total11,jdbcType=INTEGER},
+      </if>
+      <if test="record.total14 != null" >
+        total_14 = #{record.total14,jdbcType=INTEGER},
+      </if>
+      <if test="record.total15 != null" >
+        total_15 = #{record.total15,jdbcType=INTEGER},
+      </if>
+      <if test="record.total16 != null" >
+        total_16 = #{record.total16,jdbcType=INTEGER},
+      </if>
+      <if test="record.total17 != null" >
+        total_17 = #{record.total17,jdbcType=INTEGER},
+      </if>
+      <if test="record.total8 != null" >
+        total_8 = #{record.total8,jdbcType=INTEGER},
+      </if>
+      <if test="record.total9 != null" >
+        total_9 = #{record.total9,jdbcType=INTEGER},
+      </if>
+      <if test="record.violation11 != null" >
+        violation_11 = #{record.violation11,jdbcType=INTEGER},
+      </if>
+      <if test="record.violation14 != null" >
+        violation_14 = #{record.violation14,jdbcType=INTEGER},
+      </if>
+      <if test="record.violation15 != null" >
+        violation_15 = #{record.violation15,jdbcType=INTEGER},
+      </if>
+      <if test="record.violation16 != null" >
+        violation_16 = #{record.violation16,jdbcType=INTEGER},
+      </if>
+      <if test="record.violation17 != null" >
+        violation_17 = #{record.violation17,jdbcType=INTEGER},
+      </if>
+      <if test="record.violation8 != null" >
+        violation_8 = #{record.violation8,jdbcType=INTEGER},
+      </if>
+      <if test="record.violation9 != null" >
+        violation_9 = #{record.violation9,jdbcType=INTEGER},
+      </if>
+      <if test="record.total != null" >
+        total = #{record.total,jdbcType=INTEGER},
+      </if>
+      <if test="record.violation != null" >
+        violation = #{record.violation,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -233,11 +405,27 @@
       updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
       creater = #{record.creater,jdbcType=VARCHAR},
       investigator = #{record.investigator,jdbcType=VARCHAR},
-      total = #{record.total,jdbcType=SMALLINT},
-      violation = #{record.violation,jdbcType=SMALLINT},
-      number = #{record.number,jdbcType=SMALLINT},
-      surveyTime = #{record.surveytime,jdbcType=TIMESTAMP},
-      intersection_id = #{record.intersectionId,jdbcType=INTEGER}
+      total_10 = #{record.total10,jdbcType=INTEGER},
+      violation_10 = #{record.violation10,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=INTEGER},
+      surveyTime = #{record.surveytime,jdbcType=DATE},
+      intersection_id = #{record.intersectionId,jdbcType=INTEGER},
+      total_11 = #{record.total11,jdbcType=INTEGER},
+      total_14 = #{record.total14,jdbcType=INTEGER},
+      total_15 = #{record.total15,jdbcType=INTEGER},
+      total_16 = #{record.total16,jdbcType=INTEGER},
+      total_17 = #{record.total17,jdbcType=INTEGER},
+      total_8 = #{record.total8,jdbcType=INTEGER},
+      total_9 = #{record.total9,jdbcType=INTEGER},
+      violation_11 = #{record.violation11,jdbcType=INTEGER},
+      violation_14 = #{record.violation14,jdbcType=INTEGER},
+      violation_15 = #{record.violation15,jdbcType=INTEGER},
+      violation_16 = #{record.violation16,jdbcType=INTEGER},
+      violation_17 = #{record.violation17,jdbcType=INTEGER},
+      violation_8 = #{record.violation8,jdbcType=INTEGER},
+      violation_9 = #{record.violation9,jdbcType=INTEGER},
+      total = #{record.total,jdbcType=INTEGER},
+      violation = #{record.violation,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -257,20 +445,68 @@
       <if test="investigator != null" >
         investigator = #{investigator,jdbcType=VARCHAR},
       </if>
-      <if test="total != null" >
-        total = #{total,jdbcType=SMALLINT},
+      <if test="total10 != null" >
+        total_10 = #{total10,jdbcType=INTEGER},
       </if>
-      <if test="violation != null" >
-        violation = #{violation,jdbcType=SMALLINT},
+      <if test="violation10 != null" >
+        violation_10 = #{violation10,jdbcType=INTEGER},
       </if>
       <if test="number != null" >
-        number = #{number,jdbcType=SMALLINT},
+        number = #{number,jdbcType=INTEGER},
       </if>
       <if test="surveytime != null" >
-        surveyTime = #{surveytime,jdbcType=TIMESTAMP},
+        surveyTime = #{surveytime,jdbcType=DATE},
       </if>
       <if test="intersectionId != null" >
         intersection_id = #{intersectionId,jdbcType=INTEGER},
+      </if>
+      <if test="total11 != null" >
+        total_11 = #{total11,jdbcType=INTEGER},
+      </if>
+      <if test="total14 != null" >
+        total_14 = #{total14,jdbcType=INTEGER},
+      </if>
+      <if test="total15 != null" >
+        total_15 = #{total15,jdbcType=INTEGER},
+      </if>
+      <if test="total16 != null" >
+        total_16 = #{total16,jdbcType=INTEGER},
+      </if>
+      <if test="total17 != null" >
+        total_17 = #{total17,jdbcType=INTEGER},
+      </if>
+      <if test="total8 != null" >
+        total_8 = #{total8,jdbcType=INTEGER},
+      </if>
+      <if test="total9 != null" >
+        total_9 = #{total9,jdbcType=INTEGER},
+      </if>
+      <if test="violation11 != null" >
+        violation_11 = #{violation11,jdbcType=INTEGER},
+      </if>
+      <if test="violation14 != null" >
+        violation_14 = #{violation14,jdbcType=INTEGER},
+      </if>
+      <if test="violation15 != null" >
+        violation_15 = #{violation15,jdbcType=INTEGER},
+      </if>
+      <if test="violation16 != null" >
+        violation_16 = #{violation16,jdbcType=INTEGER},
+      </if>
+      <if test="violation17 != null" >
+        violation_17 = #{violation17,jdbcType=INTEGER},
+      </if>
+      <if test="violation8 != null" >
+        violation_8 = #{violation8,jdbcType=INTEGER},
+      </if>
+      <if test="violation9 != null" >
+        violation_9 = #{violation9,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="violation != null" >
+        violation = #{violation,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -281,11 +517,27 @@
       updateTime = #{updatetime,jdbcType=TIMESTAMP},
       creater = #{creater,jdbcType=VARCHAR},
       investigator = #{investigator,jdbcType=VARCHAR},
-      total = #{total,jdbcType=SMALLINT},
-      violation = #{violation,jdbcType=SMALLINT},
-      number = #{number,jdbcType=SMALLINT},
-      surveyTime = #{surveytime,jdbcType=TIMESTAMP},
-      intersection_id = #{intersectionId,jdbcType=INTEGER}
+      total_10 = #{total10,jdbcType=INTEGER},
+      violation_10 = #{violation10,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      surveyTime = #{surveytime,jdbcType=DATE},
+      intersection_id = #{intersectionId,jdbcType=INTEGER},
+      total_11 = #{total11,jdbcType=INTEGER},
+      total_14 = #{total14,jdbcType=INTEGER},
+      total_15 = #{total15,jdbcType=INTEGER},
+      total_16 = #{total16,jdbcType=INTEGER},
+      total_17 = #{total17,jdbcType=INTEGER},
+      total_8 = #{total8,jdbcType=INTEGER},
+      total_9 = #{total9,jdbcType=INTEGER},
+      violation_11 = #{violation11,jdbcType=INTEGER},
+      violation_14 = #{violation14,jdbcType=INTEGER},
+      violation_15 = #{violation15,jdbcType=INTEGER},
+      violation_16 = #{violation16,jdbcType=INTEGER},
+      violation_17 = #{violation17,jdbcType=INTEGER},
+      violation_8 = #{violation8,jdbcType=INTEGER},
+      violation_9 = #{violation9,jdbcType=INTEGER},
+      total = #{total,jdbcType=INTEGER},
+      violation = #{violation,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

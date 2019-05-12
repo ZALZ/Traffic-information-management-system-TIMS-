@@ -2,13 +2,14 @@ package com.danchey.traffic.pojo;
 
 import com.danchey.traffic.pojo.Alltype;
 import com.danchey.traffic.pojo.Roadstate;
+import com.github.pagehelper.Page;
 
 public class RoadStateQueryVo {
 	
 	private Roadstate roadstate;
 	private Alltype roadLevel;
 	private Alltype roadBedType;
-	
+ 	
 	public Roadstate getRoadstate() {
 		return roadstate;
 	}
@@ -33,7 +34,7 @@ public class RoadStateQueryVo {
 		this.roadLevel = roadLevel;
 		this.roadBedType = roadBedType;
 	}
-	
+
 	
 
 }

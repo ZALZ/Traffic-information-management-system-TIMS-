@@ -1,5 +1,6 @@
 package com.danchey.traffic.pojo;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Normalintersection {
@@ -19,7 +20,7 @@ public class Normalintersection {
 
     private Integer intonumber;
 
-    private Integer intowidth;
+    private BigDecimal intowidth;
 
     private Integer areatypeId;
 
@@ -91,11 +92,11 @@ public class Normalintersection {
         this.intonumber = intonumber;
     }
 
-    public Integer getIntowidth() {
+    public BigDecimal getIntowidth() {
         return intowidth;
     }
 
-    public void setIntowidth(Integer intowidth) {
+    public void setIntowidth(BigDecimal intowidth) {
         this.intowidth = intowidth;
     }
 

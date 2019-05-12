@@ -1,5 +1,6 @@
 package com.danchey.traffic.pojo;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -652,52 +653,52 @@ public class NormalintersectionExample {
             return (Criteria) this;
         }
 
-        public Criteria andIntowidthEqualTo(Integer value) {
+        public Criteria andIntowidthEqualTo(BigDecimal value) {
             addCriterion("intoWidth =", value, "intowidth");
             return (Criteria) this;
         }
 
-        public Criteria andIntowidthNotEqualTo(Integer value) {
+        public Criteria andIntowidthNotEqualTo(BigDecimal value) {
             addCriterion("intoWidth <>", value, "intowidth");
             return (Criteria) this;
         }
 
-        public Criteria andIntowidthGreaterThan(Integer value) {
+        public Criteria andIntowidthGreaterThan(BigDecimal value) {
             addCriterion("intoWidth >", value, "intowidth");
             return (Criteria) this;
         }
 
-        public Criteria andIntowidthGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIntowidthGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("intoWidth >=", value, "intowidth");
             return (Criteria) this;
         }
 
-        public Criteria andIntowidthLessThan(Integer value) {
+        public Criteria andIntowidthLessThan(BigDecimal value) {
             addCriterion("intoWidth <", value, "intowidth");
             return (Criteria) this;
         }
 
-        public Criteria andIntowidthLessThanOrEqualTo(Integer value) {
+        public Criteria andIntowidthLessThanOrEqualTo(BigDecimal value) {
             addCriterion("intoWidth <=", value, "intowidth");
             return (Criteria) this;
         }
 
-        public Criteria andIntowidthIn(List<Integer> values) {
+        public Criteria andIntowidthIn(List<BigDecimal> values) {
             addCriterion("intoWidth in", values, "intowidth");
             return (Criteria) this;
         }
 
-        public Criteria andIntowidthNotIn(List<Integer> values) {
+        public Criteria andIntowidthNotIn(List<BigDecimal> values) {
             addCriterion("intoWidth not in", values, "intowidth");
             return (Criteria) this;
         }
 
-        public Criteria andIntowidthBetween(Integer value1, Integer value2) {
+        public Criteria andIntowidthBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("intoWidth between", value1, value2, "intowidth");
             return (Criteria) this;
         }
 
-        public Criteria andIntowidthNotBetween(Integer value1, Integer value2) {
+        public Criteria andIntowidthNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("intoWidth not between", value1, value2, "intowidth");
             return (Criteria) this;
         }

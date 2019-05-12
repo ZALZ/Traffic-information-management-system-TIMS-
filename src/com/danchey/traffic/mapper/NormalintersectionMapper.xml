@@ -10,7 +10,7 @@
     <result column="investigator" property="investigator" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="intoNumber" property="intonumber" jdbcType="INTEGER" />
-    <result column="intoWidth" property="intowidth" jdbcType="INTEGER" />
+    <result column="intoWidth" property="intowidth" jdbcType="DECIMAL" />
     <result column="areaType_id" property="areatypeId" jdbcType="INTEGER" />
     <result column="controlType_id" property="controltypeId" jdbcType="INTEGER" />
     <result column="coordinate" property="coordinate" jdbcType="VARCHAR" />
@@ -115,7 +115,7 @@
       )
     values (#{id,jdbcType=INTEGER}, #{surveytime,jdbcType=DATE}, #{createtime,jdbcType=TIMESTAMP}, 
       #{updatetime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{investigator,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{intonumber,jdbcType=INTEGER}, #{intowidth,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{intonumber,jdbcType=INTEGER}, #{intowidth,jdbcType=DECIMAL}, 
       #{areatypeId,jdbcType=INTEGER}, #{controltypeId,jdbcType=INTEGER}, #{coordinate,jdbcType=VARCHAR}
       )
   </insert>
@@ -185,7 +185,7 @@
         #{intonumber,jdbcType=INTEGER},
       </if>
       <if test="intowidth != null" >
-        #{intowidth,jdbcType=INTEGER},
+        #{intowidth,jdbcType=DECIMAL},
       </if>
       <if test="areatypeId != null" >
         #{areatypeId,jdbcType=INTEGER},
@@ -232,7 +232,7 @@
         intoNumber = #{record.intonumber,jdbcType=INTEGER},
       </if>
       <if test="record.intowidth != null" >
-        intoWidth = #{record.intowidth,jdbcType=INTEGER},
+        intoWidth = #{record.intowidth,jdbcType=DECIMAL},
       </if>
       <if test="record.areatypeId != null" >
         areaType_id = #{record.areatypeId,jdbcType=INTEGER},
@@ -258,7 +258,7 @@
       investigator = #{record.investigator,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       intoNumber = #{record.intonumber,jdbcType=INTEGER},
-      intoWidth = #{record.intowidth,jdbcType=INTEGER},
+      intoWidth = #{record.intowidth,jdbcType=DECIMAL},
       areaType_id = #{record.areatypeId,jdbcType=INTEGER},
       controlType_id = #{record.controltypeId,jdbcType=INTEGER},
       coordinate = #{record.coordinate,jdbcType=VARCHAR}
@@ -291,7 +291,7 @@
         intoNumber = #{intonumber,jdbcType=INTEGER},
       </if>
       <if test="intowidth != null" >
-        intoWidth = #{intowidth,jdbcType=INTEGER},
+        intoWidth = #{intowidth,jdbcType=DECIMAL},
       </if>
       <if test="areatypeId != null" >
         areaType_id = #{areatypeId,jdbcType=INTEGER},
@@ -314,7 +314,7 @@
       investigator = #{investigator,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       intoNumber = #{intonumber,jdbcType=INTEGER},
-      intoWidth = #{intowidth,jdbcType=INTEGER},
+      intoWidth = #{intowidth,jdbcType=DECIMAL},
       areaType_id = #{areatypeId,jdbcType=INTEGER},
       controlType_id = #{controltypeId,jdbcType=INTEGER},
       coordinate = #{coordinate,jdbcType=VARCHAR}

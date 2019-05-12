@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.danchey.traffic.mapper.CounterMapper">
+	<select id="selectTotal"
+		resultType="com.danchey.traffic.pojo.Pedestrianflow">
+		select
+		sum(total) as total, sum(violation) as violation,
+		sum(total_8) as total8, sum(violation_8) as violation8,
+		sum(total_9) as
+		total9, sum(violation_9) as violation9,
+		sum(total_10) as total10,
+		sum(violation_10) as violation10,
+		sum(total_11) as total11,
+		sum(violation_11) as violation11,
+		sum(total_14) as total14,
+		sum(violation_14) as violation14,
+		sum(total_15) as total15,
+		sum(violation_15) as violation15,
+		sum(total_16) as total16,
+		sum(violation_16) as violation16,
+		sum(total_17) as total17,
+		sum(violation_17) as violation17
+		from
+		pedestrianflow
+	</select>
+
+	<select id="selectAllGroupBySurveyTime"
+		resultType="com.danchey.traffic.pojo.Pedestrianflow">
+		select
+		sum(total) as total, sum(violation) as violation,
+		sum(total_8) as total8, sum(violation_8) as violation8,
+		sum(total_9) as
+		total9, sum(violation_9) as violation9,
+		sum(total_10) as total10,
+		sum(violation_10) as violation10,
+		sum(total_11) as total11,
+		sum(violation_11) as violation11,
+		sum(total_14) as total14,
+		sum(violation_14) as violation14,
+		sum(total_15) as total15,
+		sum(violation_15) as violation15,
+		sum(total_16) as total16,
+		sum(violation_16) as violation16,
+		sum(total_17) as total17,
+		sum(violation_17) as violation17,
+		surveyTime as surveytime
+		from
+		pedestrianflow
+		group by
+		surveyTime
+		order by
+		surveyTime asc
+	</select>
+
+
+	<select id="selectByNormalIDandNumber"
+		resultType="com.danchey.traffic.pojo.Pedestrianflow">
+		select
+		sum(total) as total, sum(violation) as violation,
+		sum(total_8) as total8, sum(violation_8) as violation8,
+		sum(total_9) as
+		total9, sum(violation_9) as violation9,
+		sum(total_10) as total10,
+		sum(violation_10) as violation10,
+		sum(total_11) as total11,
+		sum(violation_11) as violation11,
+		sum(total_14) as total14,
+		sum(violation_14) as violation14,
+		sum(total_15) as total15,
+		sum(violation_15) as violation15,
+		sum(total_16) as total16,
+		sum(violation_16) as violation16,
+		sum(total_17) as total17,
+		sum(violation_17) as violation17
+		from
+		pedestrianflow
+		where
+		intersection_id = #{intersectionId} and
+		number = #{number}
+	</select>
+
+	<select id="selectByNormalIDandNumberGroupBySurveyTime"
+		resultType="com.danchey.traffic.pojo.Pedestrianflow">
+		select
+		sum(total) as total, sum(violation) as violation,
+		sum(total_8) as total8, sum(violation_8) as violation8,
+		sum(total_9) as
+		total9, sum(violation_9) as violation9,
+		sum(total_10) as total10,
+		sum(violation_10) as violation10,
+		sum(total_11) as total11,
+		sum(violation_11) as violation11,
+		sum(total_14) as total14,
+		sum(violation_14) as violation14,
+		sum(total_15) as total15,
+		sum(violation_15) as violation15,
+		sum(total_16) as total16,
+		sum(violation_16) as violation16,
+		sum(total_17) as total17,
+		sum(violation_17) as violation17,
+		surveyTime as surveytime
+		from
+		pedestrianflow
+		where
+		intersection_id = #{intersectionId} and
+		number =
+		#{number}
+		group by
+		surveyTime
+		order by
+		surveyTime asc
+	</select>
+
+	<select id="selectAllAndLocation"
+		resultType="com.danchey.traffic.pojo.CounterAndLocation">
+		select
+		sum(violation)/sum(total) as percent,
+		p.surveyTime as surveyTime,
+		n.coordinate as location,
+		n.id as inersectionId
+		from
+		pedestrianflow as p
+		left join
+		normalintersection as n
+		on
+		p.intersection_id = n.id
+		group by
+		p.intersection_id , p.surveyTime
+
+	</select>
+
+
+</mapper>

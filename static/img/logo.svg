@@ -1,0 +1,13 @@
+<svg width="224.00000000000003" height="50" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="52" width="226" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <text font-style="italic" xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_1" y="27.903846" x="33.482912" stroke-width="0" stroke="#000" fill="#0000ff">&lt;&gt;T-I-M-S-&lt;/&gt;</text>
+  <text style="cursor: move;" stroke="#000" transform="matrix(0.5646292322132899,0,0,0.5646292322132899,164.90920867590134,21.352725710778344) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_2" y="39.704586" x="-233.884246" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#000000">交  通  信  息  管  理  系  统</text>
+ </g>
+</svg>

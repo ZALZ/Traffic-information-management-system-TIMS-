@@ -1,54 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
-<!-- 顶部导航栏 -->
-<nav class="navbar page-header">
+<nav class="navbar page-header" style="z-index: 1000">
 	<a href="#"
-		class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto"> <i id='noc'
-		class="fa fa-bars"></i>
-	</a> <a class="navbar-brand" href="#"> <i id='noc'mg src="./imgs/logo.png"
-		alt="logo">
-	</a> <a href="#" class="btn btn-link sidebar-toggle d-md-down-none"> <i id='noc'
-		class="fa fa-bars"></i>
+		class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto"> <i
+		id='noc' class="fa fa-bars"></i>
+	</a> <a class="navbar-brand" href="/Traffic-information-management-system-TIMS-">
+		<div class="h3">交通信息管理系统</div>
 	</a>
-
 	<ul class="navbar-nav ml-auto">
-		<li class="nav-item d-md-down-none"><a href="#"> <i id='noc'
-				class="fa fa-bell"></i> <span class="badge badge-pill badge-danger">5</span>
-		</a></li>
-
-		<li class="nav-item d-md-down-none"><a href="#"> <i id='noc'
-				class="fa fa-envelope-open"></i> <span
-				class="badge badge-pill badge-danger">5</span>
-		</a></li>
-
-		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
-			href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="false"> <i id='noc'mg src="./imgs/avatar-1.png"
-				class="avatar avatar-sm" alt="logo"> <span
-				class="small ml-1 d-md-down-none">John Smith</span>
-		</a>
-
-			<div class="dropdown-menu dropdown-menu-right">
-				<div class="dropdown-header">Account</div>
-
-				<a href="#" class="dropdown-item"> <i id='noc' class="fa fa-user"></i>
-					Profile
-				</a> <a href="#" class="dropdown-item"> <i id='noc' class="fa fa-envelope"></i>
-					Messages
-				</a>
-
-				<div class="dropdown-header">Settings</div>
-
-				<a href="#" class="dropdown-item"> <i id='noc' class="fa fa-bell"></i>
-					Notifications
-				</a> <a href="#" class="dropdown-item"> <i id='noc' class="fa fa-wrench"></i>
-					Settings
-				</a> <a href="#" class="dropdown-item"> <i id='noc' class="fa fa-lock"></i>
-					Logout
-				</a>
-			</div></li>
+		<li class="nav-item dropdown"><span
+				class="small ml-1 d-md-down-none">
+					欢迎：${sessionScope.username}
+			</span></li>
 	</ul>
 </nav>
